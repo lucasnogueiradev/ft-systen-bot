@@ -1,7 +1,3 @@
-import Loggo from "../assets/icon.png";
-import { Separator } from "./ui/separator";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { NavLink } from "./nav-link";
 import { ToggleTheme } from "./toggle-theme";
 import { AccountMenu } from "./account-menu";
 

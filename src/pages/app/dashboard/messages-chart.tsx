@@ -1,12 +1,10 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "../../../components/ui/card";
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
-import colors from "tailwindcss/colors";
 
 const data = [
   { date: "10/11", menssage: 10 },
@@ -47,7 +45,7 @@ export const MessagesChart = () => {
               cy="50%"
               outerRadius={80}
               fill="#7b7a8b"
-              label={({ name, value }) => `Data: ${name}, Qtd: ${value}`}
+              label={renderCustomLabel}
               innerRadius={64}
               strokeWidth={2}
             />

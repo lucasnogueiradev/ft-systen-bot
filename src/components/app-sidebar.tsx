@@ -1,4 +1,3 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 import Loggo from "../assets/icon.png";
 
 import {
@@ -11,9 +10,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "./ui/sidebar";
-import { GoDependabot } from "react-icons/go";
-import { RiContactsFill, RiContactsLine } from "react-icons/ri";
-import { MdOutlineAttachMoney } from "react-icons/md";
+
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { RiRobot2Fill } from "react-icons/ri";
 import { HiMiniUsers } from "react-icons/hi2";

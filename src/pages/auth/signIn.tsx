@@ -23,7 +23,7 @@ export const SignIn = () => {
   // const { mutateAsync: authenticate } = useMutation({
   //   mutationFn: signIn,
   // });
-  async function handleSignIn(data: SignInForm) {
+  async function handleSignIn() {
     try {
       // await authenticate({ email: data.email });
       toast.success("Login realizado com sucesso");
