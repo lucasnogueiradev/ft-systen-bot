@@ -2,19 +2,19 @@ import { Outlet } from "react-router-dom";
 import { Header } from "../../components/header";
 import { SidebarProvider } from "../../components/ui/sidebar";
 import { AppSidebar } from "../../components/app-sidebar";
-import { useEffect } from "react";
-import { useState } from "react";
-import Cookies from "js-cookie";
+// import { useEffect } from "react";
+// import { useState } from "react";
+// import Cookies from "js-cookie";
 
 export function AppLayout() {
-  const [defaultOpen, setDefaultOpen] = useState<boolean>(true);
+  // const [defaultOpen, setDefaultOpen] = useState<boolean>(true);
 
-  useEffect(() => {
-    // Acessando o valor do cookie
-    const sidebarState = Cookies.get("sidebar:state");
-    const defaultOpenValue = sidebarState === "true";
-    setDefaultOpen(defaultOpenValue);
-  }, []);
+  // useEffect(() => {
+  //   // Acessando o valor do cookie
+  //   const sidebarState = Cookies.get("sidebar:state");
+  //   const defaultOpenValue = sidebarState === "true";
+  //   setDefaultOpen(defaultOpenValue);
+  // }, []);
 
   return (
     <div className="flex min-h-screen flex-col antialiased bg-muted">
