@@ -18,12 +18,12 @@ export function AppLayout() {
   }, []);
   console.log("true", defaultOpen);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   return (
     <div className="flex min-h-screen flex-col antialiased bg-muted">
       <Header />
       {/* Provedor de contexto para o Sidebar */}
-      <SidebarProvider open={open} onOpenChange={setOpen}>
+      <SidebarProvider defaultOpen className="group/collapsible">
         <AppSidebar />
 
         <main className="flex flex-1 flex-col max-h-screen gap-4 p-8 pt-6">
