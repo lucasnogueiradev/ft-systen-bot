@@ -20,7 +20,7 @@ export function AppLayout() {
     <div className="flex min-h-screen flex-col antialiased bg-muted">
       <Header />
       {/* Provedor de contexto para o Sidebar */}
-      <SidebarProvider defaultOpen={defaultOpen}>
+      <SidebarProvider defaultOpen={true}>
         {/* Cabeçalho */}
 
         {/* Layout Principal */}
