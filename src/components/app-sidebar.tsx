@@ -12,18 +12,7 @@ import {
   useSidebar,
 } from "./ui/sidebar";
 
-import { TbLayoutDashboardFilled } from "react-icons/tb";
-import { RiRobot2Fill } from "react-icons/ri";
-import { HiMiniUsers } from "react-icons/hi2";
-import { FaMoneyBill } from "react-icons/fa";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { FaRegMoneyBill1 } from "react-icons/fa6";
-import { HiOutlineUsers } from "react-icons/hi2";
-import { LuUsers2 } from "react-icons/lu";
-
 // Menu items.import { FcConferenceCall } from "react-icons/fc";
-import { FcConferenceCall } from "react-icons/fc";
-import { FcFlowChart } from "react-icons/fc";
 import { FcContacts } from "react-icons/fc";
 import { FcDoughnutChart } from "react-icons/fc";
 import { FcGenealogy } from "react-icons/fc";

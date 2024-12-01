@@ -1,6 +1,5 @@
 import { ToggleTheme } from "./toggle-theme";
 import { AccountMenu } from "./account-menu";
-import { AppSidebar } from "./app-sidebar";
 
 export const Header = () => {
   return (
