@@ -6,12 +6,9 @@ import {
   TableHeader,
   TableRow,
 } from "../../../components/ui/table";
-import { Button } from "../../../components/ui/button";
 import { FluxoTableRow } from "./fluxo-bot-row";
 import { FilterTableWhats } from "../../../components/filters/filter-table-whats";
 import { PaginationTable } from "../../../components/paginations";
-import { Link } from "react-router-dom";
-import { BreadcrumbBot } from "../../../components/breadcrumb/breadcrumb";
 import { useState } from "react";
 import { FluxoTableRowSkeleton } from "./fluxo-bot-row-skeleton";
 import { useEffect } from "react";

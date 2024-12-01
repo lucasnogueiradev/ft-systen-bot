@@ -8,7 +8,6 @@ import {
 } from "../../../components/ui/card";
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
-import { TableRow, TableCell } from "../../../components/ui/table";
 import {
   Select,
   SelectContent,
@@ -23,7 +22,7 @@ import {
   AlertTitle,
 } from "../../../components/ui/alert";
 import { TiInfoLarge } from "react-icons/ti";
-import { Separator } from "../../../components/ui/separator";
+// import { Separator } from "../../../components/ui/separator";
 
 const ModelSchema = z.object({
   name: z.string().min(1, "O campo não pode estar vazio."),
@@ -31,11 +30,10 @@ const ModelSchema = z.object({
 
 type FormValues = z.infer<typeof ModelSchema>;
 export const EditFluxo = () => {
-  const { register, handleSubmit, formState, control, setValue } =
-    useForm<FormValues>({
-      //  resolver: zodResolver(ModelSchema),
-      mode: "onChange",
-    });
+  const { control } = useForm<FormValues>({
+    //  resolver: zodResolver(ModelSchema),
+    mode: "onChange",
+  });
   return (
     <>
       <Card className="grid grid-cols-1 gap-10">

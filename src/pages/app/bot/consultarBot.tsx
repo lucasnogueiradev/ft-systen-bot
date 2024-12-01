@@ -1,16 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import {
-  Table,
-  TableBody,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "../../../components/ui/table";
 import { Button } from "../../../components/ui/button";
-import { FluxoTableRow } from "./fluxo-bot-row";
-import { FilterTableWhats } from "../../../components/filters/filter-table-whats";
-import { PaginationTable } from "../../../components/paginations";
-import { Link } from "react-router-dom";
 import { BreadcrumbBot } from "../../../components/breadcrumb/breadcrumb";
 import { useState } from "react";
 import { TableBot } from "./table-fluxo";
@@ -26,6 +15,8 @@ export function ConsultarBot() {
       name: "",
     },
   });
+
+  console.log("formData", formData);
   const handleDataChange = (step: number, data: any) => {
     setFormData((prevData: FormData) => {
       if (step === 2) {
