@@ -27,7 +27,7 @@ export const MessagesChart = () => {
       <CardHeader className="pb-8">
         <div className="flex items-center justify-between">
           <CardTitle className="text-muted-foreground ">
-            Relátorios total de mensagens
+            Relátorios dias com mais contatos
           </CardTitle>
           {/* <CardDescription className="text-xs text-muted-foreground">
             Relátorios diário do período
