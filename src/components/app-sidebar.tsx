@@ -9,60 +9,93 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "./ui/sidebar";
 
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { RiRobot2Fill } from "react-icons/ri";
 import { HiMiniUsers } from "react-icons/hi2";
 import { FaMoneyBill } from "react-icons/fa";
+import { LuLayoutDashboard } from "react-icons/lu";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { HiOutlineUsers } from "react-icons/hi2";
+import { LuUsers2 } from "react-icons/lu";
 
-// Menu items.
+// Menu items.import { FcConferenceCall } from "react-icons/fc";
+import { FcConferenceCall } from "react-icons/fc";
+import { FcFlowChart } from "react-icons/fc";
+import { FcContacts } from "react-icons/fc";
+import { FcDoughnutChart } from "react-icons/fc";
+import { FcGenealogy } from "react-icons/fc";
+import { FcCurrencyExchange } from "react-icons/fc";
+
 const items = [
   {
     title: "Dashboard",
     url: "/",
-    icon: TbLayoutDashboardFilled,
-  },
-  {
-    title: "Bots",
-    url: "/bots",
-    icon: RiRobot2Fill,
-  },
-  {
-    title: "Contatos",
-    url: "#",
-    icon: HiMiniUsers,
+    icon: FcDoughnutChart,
   },
   {
     title: "Assinaturas",
     url: "#",
-    icon: FaMoneyBill,
+    icon: FcCurrencyExchange,
+  },
+  {
+    title: "Contatos",
+    url: "#",
+    icon: FcContacts,
+  },
+  {
+    title: "Bots",
+    url: "/bots",
+    icon: FcGenealogy,
   },
 ];
 
 export function AppSidebar() {
+  const { state } = useSidebar();
+  console.log(state);
   return (
-    <Sidebar className="z-10 flex">
+    <Sidebar collapsible="icon" variant="floating">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="p-6 flex gap-2">
-            <img src={Loggo} className="w-8 cursor-pointer" />
-            <h2>Otimize chatbot</h2>
+          <SidebarGroupLabel className="gap-4 p-4 mt-4">
+            <img src={Loggo} className="w-9 " />
+            <h2 className="font-geist text-sm text-muted-foreground text-green-600">
+              Chatbot
+            </h2>
+          </SidebarGroupLabel>
+
+          <SidebarGroupLabel className="mt-9 duration-200 font-geist flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium">
+            Sistema
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu className="p-6 flex gap-2">
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+            <SidebarMenu>
+              <div
+                className={`flex mb-9 text-sm  ${
+                  state ? "flex flex-col" : ""
+                } p-2 `}
+              >
+                {items.map((item) => (
+                  <SidebarMenuItem key={item.title} className="pb-6">
+                    <SidebarMenuButton asChild>
+                      <a href={item.url} className=" font-geist">
+                        <span>
+                          <item.icon className="text-3xl flex  size-6" />
+                        </span>
+                        <span className="font-medium flex w-full items-center px-2 py-1 text-muted-foreground underline-offset-2 gap-x-4">
+                          {item.title}
+                        </span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              </div>
             </SidebarMenu>
           </SidebarGroupContent>
+          <SidebarGroupLabel className="mt-9 duration-200 font-geist flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium">
+            Tutorias
+          </SidebarGroupLabel>
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>

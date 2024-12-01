@@ -84,8 +84,10 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Geist";
 }
 body {
   margin: 0;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }

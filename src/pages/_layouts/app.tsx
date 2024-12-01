@@ -1,20 +1,30 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../../components/header";
-import { SidebarProvider, SidebarTrigger } from "../../components/ui/sidebar";
+import {
+  SidebarHeader,
+  SidebarProvider,
+  SidebarTrigger,
+} from "../../components/ui/sidebar";
 import { AppSidebar } from "../../components/app-sidebar";
+import { BreadcrumbBot } from "../../components/breadcrumb/breadcrumb";
 
 export function AppLayout() {
   return (
-    <div className="flex h-screen flex-col antialiased">
+    <div className="flex min-h-screen flex-col antialiased bg-muted">
       <Header />
-      <SidebarProvider>
-        <div className="flex flex-1 overflow-hidden">
-          <AppSidebar />
-          <main className="flex flex-1 flex-col gap-4 overflow-y-auto p-4">
-            <SidebarTrigger />
-            <Outlet />
-          </main>
-        </div>
+      {/* Provedor de contexto para o Sidebar */}
+      <SidebarProvider className="">
+        {/* Cabeçalho */}
+
+        {/* Layout Principal */}
+
+        {/* Sidebar */}
+        <AppSidebar />
+
+        {/* Conteúdo Principal */}
+        <main className="flex flex-1 flex-col max-h-screen gap-4 p-8 pt-6">
+          <Outlet />
+        </main>
       </SidebarProvider>
     </div>
   );

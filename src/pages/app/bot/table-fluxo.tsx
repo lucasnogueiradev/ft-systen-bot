@@ -11,21 +11,34 @@ import { FluxoTableRow } from "./fluxo-bot-row";
 import { FilterTableWhats } from "../../../components/filters/filter-table-whats";
 import { PaginationTable } from "../../../components/paginations";
 import { Link } from "react-router-dom";
+import { BreadcrumbBot } from "../../../components/breadcrumb/breadcrumb";
+import { useState } from "react";
+import { FluxoTableRowSkeleton } from "./fluxo-bot-row-skeleton";
+import { useEffect } from "react";
 
-export function FluxosBot() {
+export function TableBot() {
+  const [isLoading, setIsLoading] = useState(true);
+  // Simula o carregamento por 2 segundos
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false); // Após 2 segundos, termina o loading
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <Helmet title="Fluxos" />
       <section className="flex flex-col gap-4">
         <h1 className="text-1xl font-500 tracking-tight text-muted-foreground"></h1>
         <div className="space-y-2.5">
-          <header className="flex flex-row items-center justify-between">
+          <header className="flex flex-row items-center justify-between pl-4">
             <FilterTableWhats />
-            <Button className="bg-green-600">
-              <Link to="/categoria">Criar bot</Link>
-            </Button>
+            {/* <Button>
+              <Link to="/categoria">Criar modelo</Link>
+            </Button> */}
           </header>
-
           <div className="rounded-md border bg-card">
             <Table>
               <TableHeader>
@@ -57,8 +70,12 @@ export function FluxosBot() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Array.from({ length: 10 }).map((_, i) => {
-                  return <FluxoTableRow key={i} />;
+                {Array.from({ length: 7 }).map((_, i) => {
+                  return isLoading ? (
+                    <FluxoTableRowSkeleton key={i} />
+                  ) : (
+                    <FluxoTableRow key={i} />
+                  );
                 })}
               </TableBody>
             </Table>

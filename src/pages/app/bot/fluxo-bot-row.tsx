@@ -22,7 +22,7 @@ export const FluxoTableRow = () => {
       <TableCell>--</TableCell>
       <TableCell>21 de nov de 2024</TableCell>
       <TableCell>
-        <FaRegEdit className="w-8 h-6 text-muted-foreground cursor-pointer" />
+        <FaRegEdit className="w-8 h-6 text-muted-foreground cursor-pointer hover:text-green-600" />
       </TableCell>
     </TableRow>
   );

@@ -3,7 +3,7 @@ import { Dashboard } from "./pages/app/dashboard/dashboard";
 import { SignIn } from "./pages/auth/signIn";
 import { AppLayout } from "./pages/_layouts/app";
 import { AuthLayout } from "./pages/_layouts/auth";
-import { FluxosBot } from "./pages/app/bot/bot";
+import { ConsultarBot } from "./pages/app/bot/consultarBot";
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/bots",
-        element: <FluxosBot />,
+        element: <ConsultarBot />,
       },
     ],
   },

@@ -61,6 +61,10 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+        geist: ["Geist", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
