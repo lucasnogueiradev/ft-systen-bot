@@ -5,7 +5,7 @@ import { AppSidebar } from "../../components/app-sidebar";
 import { useEffect } from "react";
 import { useState } from "react";
 import Cookies from "js-cookie";
-import React from "react";
+// import React from "react";
 
 export function AppLayout() {
   const [defaultOpen, setDefaultOpen] = useState<boolean>(false);
@@ -18,7 +18,7 @@ export function AppLayout() {
   }, []);
   console.log("true", defaultOpen);
 
-  const [open, setOpen] = React.useState(true);
+  // const [open, setOpen] = React.useState(true);
   return (
     <div className="flex min-h-screen flex-col antialiased bg-muted">
       <Header />
