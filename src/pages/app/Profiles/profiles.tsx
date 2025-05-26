@@ -28,7 +28,7 @@ export const Profiles = () => {
       }
 
       const data = await response.json();
-      // Atualiza o usuário no contexto com o novo username
+
       setUser((prevUser: any) => ({
         ...prevUser,
         username: data.username,

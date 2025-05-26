@@ -30,7 +30,7 @@ export function AuthLayout() {
         </footer>
       </aside>
 
-      <div className="flex flex-col items-center justify-center bg-muted-foreground/5 md:w-[35%] w-full gap-y-16 h-full overflow-hidden bg-zinc-50">
+      <div className="flex flex-col items-center justify-center bg-muted-foreground/5 md:w-[35%] w-full gap-y-16 h-full  bg-zinc-50">
         <Outlet />
       </div>
     </section>

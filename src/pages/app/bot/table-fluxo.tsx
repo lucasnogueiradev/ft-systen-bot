@@ -30,7 +30,7 @@ export function TableBot() {
       <section className="flex flex-col gap-4">
         <h1 className="text-1xl font-500 tracking-tight text-muted-foreground"></h1>
         <div className="space-y-2.5">
-          <header className="flex flex-row items-center justify-between pl-4">
+          <header className="flex flex-row items-center justify-between">
             <FilterTableWhats />
             {/* <Button>
               <Link to="/categoria">Criar modelo</Link>
