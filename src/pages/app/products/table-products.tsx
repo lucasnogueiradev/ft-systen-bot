@@ -64,7 +64,7 @@ export function TableProducts() {
               <Link to="/categoria">Criar modelo</Link>
             </Button> */}
           </header>
-          <div className="rounded-md border bg-card overflow-y-auto h-[67vh]">
+          <div className="rounded-md border bg-card overflow-y-auto h-[60vh]">
             <Table className="w-full table-fixed">
               <TableHeader>
                 <TableRow>
