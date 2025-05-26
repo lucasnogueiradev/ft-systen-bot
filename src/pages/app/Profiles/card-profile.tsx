@@ -35,7 +35,7 @@ export const CardProfile = ({ username, onEditar }: CardProfileProps) => {
             <Label className="pb-3 flex text-muted-foreground">
               Nome do perfil
             </Label>
-            {username || ""}
+            {username || "Nome não cadastrado"}
           </span>
           <p className="text-xs text-muted-foreground">
             Nome que será usado no seu site

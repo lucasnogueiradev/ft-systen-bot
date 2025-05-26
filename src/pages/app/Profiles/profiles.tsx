@@ -50,23 +50,23 @@ export const Profiles = () => {
       </h1>
 
       <div className="rounded-md bg-card p-6 overflow-y-auto h-screen">
-        {(Array.isArray(user) ? user : [user]).map((item) => (
-          <div key={item._id} className="mb-6">
+        {(Array?.isArray(user) ? user : [user]).map((item) => (
+          <div key={item?._id} className="mb-6">
             {/* Só mostra o Card se não estiver editando esse item */}
-            {editandoId !== item._id && (
+            {editandoId !== item?._id && (
               <CardProfile
-                username={item.username}
-                onEditar={() => setEditandoId(item._id)}
+                username={item?.username}
+                onEditar={() => setEditandoId(item?._id)}
               />
             )}
 
             {/* Mostra o formulário se estiver editando */}
-            {editandoId === item._id && (
+            {editandoId === item?._id && (
               <CreateProfile
-                username={item.username}
+                username={item?.username}
                 onDataChange={async (data) => {
                   await updateUsername(data.username);
-                  setEditandoId(null); // <- volta ao modo visual após salvar
+                  setEditandoId(null);
                 }}
                 onCancelar={() => setEditandoId(null)}
                 currentStep={1}
