@@ -22,7 +22,7 @@ import { FaCartPlus } from "react-icons/fa6";
 
 const items = [
   {
-    title: "Dashboard",
+    title: "Relatórios",
     url: "/",
     icon: MdSpaceDashboard,
   },

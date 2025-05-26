@@ -39,8 +39,8 @@ export function TableProducts() {
               <Link to="/categoria">Criar modelo</Link>
             </Button> */}
           </header>
-          <div className="rounded-md border bg-card flex flex-col">
-            <Table className="overflow-y-auto h-screen flex flex-col">
+          <div className="rounded-md border bg-card overflow-y-auto h-[67vh]">
+            <Table className="w-full table-fixed">
               <TableHeader>
                 <TableRow>
                   <TableHead className="w-[140px] text-foreground">
@@ -56,21 +56,22 @@ export function TableProducts() {
                     Link do afiliado
                   </TableHead>
                   <TableHead className="w-[140px] text-foreground">
-                    data de criação
+                    Data de criação
                   </TableHead>
                 </TableRow>
               </TableHeader>
-              <TableBody className="">
-                {Array.from({ length: 19 }).map((_, i) => {
-                  return isLoading ? (
+              <TableBody>
+                {Array.from({ length: 19 }).map((_, i) =>
+                  isLoading ? (
                     <ProductsTableRowSkeleton key={i} />
                   ) : (
                     <ProductsTableRow key={i} />
-                  );
-                })}
+                  )
+                )}
               </TableBody>
             </Table>
           </div>
+
           <PaginationTable pageIndex={0} totalCount={20} perPage={10} />
         </div>
       </section>

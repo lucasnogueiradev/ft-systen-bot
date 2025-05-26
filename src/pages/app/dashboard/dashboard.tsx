@@ -14,11 +14,11 @@ import { MessagesChart } from "./messages-chart";
 export const Dashboard = () => {
   return (
     <section className="flex flex-col gap-4">
-      <Helmet title="Dashboard" />
+      <Helmet title="Relatórios" />
       <h1 className="text-1xl font-500 tracking-tight text-muted-foreground">
         Dashboard
       </h1>
-      <div className="overflow-y-auto h-screen ">
+      <div className="overflow-y-auto h-[85vh] ">
         <div className="flex gap-3 flex-col md:flex-row md:justify-between mb-3 ">
           <Card className="md:flex md:flex-col md:w-[100%]">
             <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
@@ -45,7 +45,7 @@ export const Dashboard = () => {
             </CardHeader>
             <CardContent className="space-y-1">
               <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-                0
+                1
               </span>
               <p className="text-xs text-muted-foreground">
                 Quatidades de lojas liberadas no seu plano
@@ -61,7 +61,7 @@ export const Dashboard = () => {
             </CardHeader>
             <CardContent className="space-y-1">
               <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-                0
+                1
               </span>
               <p className="text-xs text-muted-foreground">
                 Quantidade de lojas configuradas
@@ -70,7 +70,7 @@ export const Dashboard = () => {
           </Card>
         </div>
 
-        <div className="flex flex-col gap-3 md:flex-row">
+        <div className="flex flex-col gap-3 md:flex-row ">
           <ContactsChart />
           <MessagesChart />
         </div>

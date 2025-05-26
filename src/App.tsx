@@ -13,7 +13,7 @@ export function App() {
       <AuthProvider>
         <HelmetProvider>
           <Toaster richColors />
-          <Helmet titleTemplate="%s | Otimize Sistema" />
+          <Helmet titleTemplate="%s | Divulgador Pro" />
           <RouterProvider router={router} />
         </HelmetProvider>
       </AuthProvider>

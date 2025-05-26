@@ -1,22 +1,24 @@
 import { Input } from "../ui/input";
-import { IoIosSearch, IoMdClose } from "react-icons/io";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
-import { Button } from "../ui/button";
+import { IoIosSearch } from "react-icons/io";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "../ui/select";
+// import { Button } from "../ui/button";
 
 export const FilterTableWhats = () => {
   return (
-    <form className="flex items-center gap-2">
+    <form className="flex items-center flex-col flex-wrap w-full">
       {/* <span className="text-sm font-semibold">Filtros:</span> */}
-      <IoIosSearch />
-      <Input placeholder="Pesquisar" className="h-8 w-[240px]" />
+      <div className="flex items-center justify-between w-full">
+        <Input placeholder="Pesquisar" className="h-8 w-[240px]" />
+        <IoIosSearch />
+      </div>
 
-      <Select defaultValue="all">
+      {/* <Select defaultValue="all">
         <SelectTrigger className="h-8 w-[180px] px-3">
           <SelectValue />
         </SelectTrigger>
@@ -24,9 +26,9 @@ export const FilterTableWhats = () => {
           <SelectItem value="all">Todos</SelectItem>
           <SelectItem value="utilidade">Utilidade</SelectItem>
         </SelectContent>
-      </Select>
+      </Select> */}
 
-      <Button
+      {/* <Button
         type="button"
         variant="outline"
         size="sm"
@@ -34,7 +36,7 @@ export const FilterTableWhats = () => {
       >
         <IoMdClose className="mr-2 h-4 w-4" />
         Remover Filtros
-      </Button>
+      </Button> */}
     </form>
   );
 };

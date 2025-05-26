@@ -119,11 +119,11 @@ export function Lojas() {
             <span>Configurar Lojas</span>
           </h1>
         </div>
-        <div className="rounded-md bg-primary-foreground overflow-y-auto h-screen flex items-center justify-center">
-          <div className="rounded-md  p-6 md:h-[80vh] h-full m-auto">
+        <div className="rounded-md bg-primary-foreground h-[83vh] overflow-y-auto overflow-x-hidden flex items-center justify-center">
+          <div className="rounded-md p-6 md:h-[80vh] h-full m-auto">
             {/* <FilterTableWhats /> */}
 
-            <div className="flex gap-6 mt-6 flex-wrap">
+            <div className="flex gap-6 mt-6 flex-wrap pb-4">
               {user?.lojas?.map((loja) => {
                 const lojaId = String(loja._id);
                 return String(editandoLojaId) === lojaId ? (

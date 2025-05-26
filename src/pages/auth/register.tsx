@@ -10,6 +10,7 @@ import capa from "../../assets/chat-fundo2.jpg";
 import Loggo from "../../assets/icon.png";
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 // 🛡️ Schema com verificação da confirmação de senha
 const signUpFormSchema = z
   .object({
@@ -29,6 +30,7 @@ type SignUpForm = z.infer<typeof signUpFormSchema>;
 export const SignUp = () => {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [mostrarSenhaR, setMostrarSenhaR] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -62,7 +64,7 @@ export const SignUp = () => {
         toast.error(responseData.mensagem || "Erro ao criar conta.");
         return;
       }
-
+      navigate("/auth/signIn");
       toast.success("Conta criada com sucesso!");
     } catch (error) {
       toast.error("Erro ao conectar com o servidor.");
