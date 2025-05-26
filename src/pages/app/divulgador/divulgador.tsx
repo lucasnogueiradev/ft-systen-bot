@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "../../../components/ui/button";
 import { FaTelegramPlane } from "react-icons/fa";
-
+import { useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export interface ProfileData {
@@ -13,10 +13,19 @@ export interface ProfileData {
 export const Divulgador = () => {
   const { user } = useAuth();
   const userId = user?._id;
+
+  const [loading, setLoading] = useState(false); // ← estado de carregamento
+
   const handleClick = async () => {
+    setLoading(true);
     const token = localStorage.getItem("token");
+    const urlTelegram = `https://t.me/divugadorpro011_bot?start=${userId}`;
+
+    // Abre o link primeiro
+    window.location.href = urlTelegram;
+
     try {
-      const res = await fetch(
+      await fetch(
         "https://bk-divulgadorpro-git-main-lucasnogueiradevs-projects.vercel.app/telegram-start",
         {
           headers: {
@@ -24,15 +33,11 @@ export const Divulgador = () => {
           },
         }
       );
-      if (res.ok) {
-        const urlTelegram = `https://t.me/divugadorpro011_bot?start=${userId}`;
-        window.open(urlTelegram, "_blank", "noopener,noreferrer");
-      } else {
-        alert("Erro ao iniciar Telegram");
-      }
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao comunicar com backend:", error);
+      setLoading(false);
     }
+    setLoading(false);
   };
 
   return (
@@ -47,10 +52,18 @@ export const Divulgador = () => {
       <div className="rounded-md bg-card p-6 h-[80vh]">
         <Button
           onClick={handleClick}
-          className="flex items-center bg-blue-600 font-semibold text-lg md:px-9 p-2 rounded-sm text-accent hover:bg-blue-800 gap-2"
+          disabled={loading}
+          className={`flex items-center font-semibold text-lg md:px-9 p-2 rounded-sm text-white gap-2
+            ${
+              loading
+                ? "bg-blue-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-800"
+            }`}
         >
           <FaTelegramPlane color="#ffffff" />
-          <span>Abrir criador de oferta no Telegram</span>
+          {loading
+            ? "Abrindo no Telegram..."
+            : "Abrir criador de oferta no Telegram"}
         </Button>
       </div>
     </section>
