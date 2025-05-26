@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
+
 import Loggo from "../../assets/icon.png";
 import capa from "../../assets/chat-fundo2.jpg";
 
@@ -21,8 +21,6 @@ const singInForm = z.object({
 type SignInForm = z.infer<typeof singInForm>;
 
 export const SignIn = () => {
-  const { setPlanId } = useAuth();
-
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const navigate = useNavigate();
 

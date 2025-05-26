@@ -7,7 +7,7 @@ import {
 } from "../../../components/ui/card";
 import { GoDependabot } from "react-icons/go";
 import { RiContactsLine, RiCustomerService2Line } from "react-icons/ri";
-import { FaRegComments } from "react-icons/fa";
+
 import { ContactsChart } from "./contacts-chart";
 import { MessagesChart } from "./messages-chart";
 

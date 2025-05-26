@@ -1,60 +1,29 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { FilterTableWhats } from "../../../components/filters/filter-table-whats";
 import { CardLoja } from "./card-loja";
 import { CreateLojas } from "./create-lojas";
 
 import { useAuth } from "../../../contexts/AuthContext";
 
-interface LojaPersonalizada {
-  nomePersonalizado: string;
-  plataforma: string;
-  logo: string;
-  nameAffiliate: string;
-}
+// interface LojaPersonalizada {
+//   nomePersonalizado: string;
+//   plataforma: string;
+//   logo: string;
+//   nameAffiliate: string;
+// }
 
-interface LojasPersonalizadasResponse {
-  lojas: LojaPersonalizada[];
-}
+// interface LojasPersonalizadasResponse {
+//   lojas: LojaPersonalizada[];
+// }
 
 export function Lojas() {
   const { user, updateLojas } = useAuth();
   const [loading, setLoading] = useState(false);
 
-  const [lojas, setLojas] = useState<LojasPersonalizadasResponse | null>(null);
-  const [statusPlan, setStatusPlan] = useState<string>("");
   const [editandoLojaId, setEditandoLojaId] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   if (user?.lojas) {
-  //     const getLojasPersonalizadas = async () => {
-  //       try {
-  //         const response = await fetch(
-  //           `http://localhost:3333/planos/${planId}/lojas-ativas`,
-  //           {
-  //             headers: {
-  //               Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //             },
-  //           }
-  //         );
-
-  //         if (!response.ok) return;
-
-  //         const personalizadas = await response.json();
-
-  //         setLojas(personalizadas);
-  //         setStatusPlan(personalizadas.status);
-  //         setEditandoLojaId(personalizadas.id);
-  //       } catch (error) {
-  //         console.error("Erro ao buscar lojas:", error);
-  //       }
-  //     };
-
-  //     getLojasPersonalizadas();
-  //   }
-  // }, [planId]);
-
   const getLojasDoUsuario = async () => {
+    setLoading(true);
     const token = localStorage.getItem("token");
 
     if (!token) return;
@@ -83,6 +52,7 @@ export function Lojas() {
         }
         console.log("loja nome atualizado", data.lojas);
         updateLojas(data.lojas);
+        setLoading(false);
       } else {
         console.error("Erro ao buscar lojas:", data);
       }

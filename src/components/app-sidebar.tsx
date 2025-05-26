@@ -12,12 +12,8 @@ import {
   useSidebar,
 } from "./ui/sidebar";
 
-// Menu items.import { FcConferenceCall } from "react-icons/fc";
 import { HiUsers } from "react-icons/hi2";
 
-import { FcContacts } from "react-icons/fc";
-import { FcDoughnutChart } from "react-icons/fc";
-import { FcGenealogy } from "react-icons/fc";
 import { IoStorefront } from "react-icons/io5";
 
 import { MdSpaceDashboard } from "react-icons/md";

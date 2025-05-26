@@ -39,7 +39,6 @@ export const CreateLojas = ({
   currentStep,
   setCurrentStep,
   name,
-  nameAffiliate,
   loading,
 }: CreateLojasProps) => {
   const { register, handleSubmit } = useForm<FormValues>({

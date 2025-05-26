@@ -1,5 +1,5 @@
 import { TableRow, TableCell } from "../../../components/ui/table";
-import { FaRegEdit } from "react-icons/fa";
+
 import magalu from "../../../assets/magalu.png";
 export const ProductsTableRow = () => {
   return (

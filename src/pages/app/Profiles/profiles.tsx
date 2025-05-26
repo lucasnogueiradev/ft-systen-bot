@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "../../../components/ui/card";
 import { useState } from "react";
-import { CreateFluxo } from "../bot/create-fluxo";
+
 import { CreateProfile } from "./create-profile";
 import { FcShop } from "react-icons/fc";
 
@@ -28,6 +28,7 @@ export const Profiles = () => {
       name: "",
     },
   });
+  console.log("currentStep", formData);
 
   const handleDataChange = (step: number, data: any) => {
     setFormData((prevData: ProfileData) => {

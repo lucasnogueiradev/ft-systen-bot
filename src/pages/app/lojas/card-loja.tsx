@@ -23,7 +23,6 @@ interface CardLojaProps {
 export const CardLoja = ({
   nome,
   logoUrl,
-  exibirBotao,
   onEditar,
   label,
   status,

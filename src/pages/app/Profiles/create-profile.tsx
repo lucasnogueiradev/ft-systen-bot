@@ -13,13 +13,6 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TiInfoLarge } from "react-icons/ti";
-
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "../../../components/ui/alert";
 
 const FormSchema = z.object({
   name: z.string().min(1, "O campo não pode estar vazio."),

@@ -1,18 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "../../../components/ui/button";
-import { Label } from "../../../components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../components/ui/card";
-import { useState } from "react";
-import { FcCurrencyExchange } from "react-icons/fc";
-import { FaTelegram } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
 
-import { FcShop } from "react-icons/fc";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export interface ProfileData {
@@ -36,7 +25,6 @@ export const Divulgador = () => {
         }
       );
       if (res.ok) {
-        const data = await res.json();
         const urlTelegram = `https://t.me/divugadorpro011_bot?start=${userId}`;
         window.open(urlTelegram, "_blank", "noopener,noreferrer");
       } else {

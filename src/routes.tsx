@@ -17,7 +17,7 @@ import { RotaPrivada } from "./contexts/rotaprivada";
 export const router = createBrowserRouter([
   {
     path: "/",
-    // element: <RotaPrivada />, // ✅ Aqui entra o guard
+    element: <RotaPrivada />, // ✅ Aqui entra o guard
     children: [
       {
         path: "/",
