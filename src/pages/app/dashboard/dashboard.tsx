@@ -18,8 +18,10 @@ export const Dashboard = () => {
       <h1 className="text-1xl font-500 tracking-tight text-muted-foreground">
         Dashboard
       </h1>
-      <div className="overflow-y-auto h-[85vh] ">
-        <div className="flex gap-3 flex-col md:flex-row md:justify-between mb-3 ">
+      <div className="overflow-y-auto h-[85vh]">
+        <div className="flex gap-3 flex-col md:flex-row md:justify-between mt-3">
+          <ContactsChart />
+          <MessagesChart />
           <Card className="md:flex md:flex-col md:w-[100%]">
             <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
               <CardTitle className="text-base font-semibold text-muted-foreground">
@@ -68,11 +70,6 @@ export const Dashboard = () => {
               </p>
             </CardContent>
           </Card>
-        </div>
-
-        <div className="flex flex-col gap-3 md:flex-row ">
-          <ContactsChart />
-          <MessagesChart />
         </div>
       </div>
     </section>
