@@ -30,7 +30,7 @@ export function TableProducts() {
       const token = localStorage.getItem("token");
       try {
         const res = await fetch(
-          `http://localhost:3333/product?userId=${userId}`,
+          `https://bk-divulgadorpro-git-main-lucasnogueiradevs-projects.vercel.app/product?userId=${userId}`,
           {
             method: "GET",
             headers: {
