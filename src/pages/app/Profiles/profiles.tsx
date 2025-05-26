@@ -13,14 +13,17 @@ export const Profiles = () => {
   const updateUsername = async (username: string) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:3333/user/username", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ username }),
-      });
+      const response = await fetch(
+        "https://bk-divulgadorpro-git-main-lucasnogueiradevs-projects.vercel.app/user/username",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ username }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
