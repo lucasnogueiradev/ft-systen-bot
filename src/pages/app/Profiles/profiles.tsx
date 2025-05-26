@@ -1,108 +1,42 @@
-import { Helmet } from "react-helmet-async";
-import { Button } from "../../../components/ui/button";
-import { Label } from "../../../components/ui/label";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "../../../components/ui/card";
 import { useState } from "react";
-
-import { CreateProfile } from "./create-profile";
+import { Helmet } from "react-helmet-async";
 import { FcShop } from "react-icons/fc";
 
-export interface ProfileData {
-  fluxo: {
-    name: string;
-  };
-}
+import { CreateProfile } from "./create-profile";
+import { CardProfile } from "./card-profile";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export const Profiles = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const { user, setUser } = useAuth();
+  const [editandoId, setEditandoId] = useState<string | null>(null);
 
-  console.log("currentStep", currentStep);
+  const updateUsername = async (username: string) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await fetch("http://localhost:3333/user/username", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ username }),
+      });
 
-  const [formData, setFormData] = useState<ProfileData>({
-    fluxo: {
-      name: "",
-    },
-  });
-  console.log("currentStep", formData);
-
-  const handleDataChange = (step: number, data: any) => {
-    setFormData((prevData: ProfileData) => {
-      if (step === 2) {
-        return {
-          ...prevData,
-          fluxo: data,
-        };
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.mensagem || "Erro desconhecido");
       }
-      if (step === 3) {
-        return {
-          ...prevData,
-          model: data,
-        };
-      }
-      return prevData;
-    });
-  };
 
-  const renderStep = () => {
-    switch (currentStep) {
-      case 1:
-        return (
-          <>
-            <div className="">
-              <Card className="border-0 border-green-500 bg-blue-400/10 md:w-[400px]">
-                <CardHeader className="flex-row justify-between">
-                  <CardTitle className="text-base font-semibold text-muted-foreground bg-amber-400 w-16 h-16 rounded-full flex items-center justify-center">
-                    <p className="text-slate-800 text-2xl">M</p>
-                  </CardTitle>
+      const data = await response.json();
+      // Atualiza o usuário no contexto com o novo username
+      setUser((prevUser: any) => ({
+        ...prevUser,
+        username: data.username,
+      }));
 
-                  <p className="text-blue-500 cursor-pointer">
-                    {" "}
-                    {currentStep === 1 && (
-                      <Button
-                        onClick={handleNext}
-                        className="flex items-center text-blue-500 bg-transparent font-bold text-1xl"
-                      >
-                        Editar
-                      </Button>
-                    )}
-                  </p>
-                </CardHeader>
-                <CardContent className="space-y-1 pt-6">
-                  <span className="text-1xl font-semibold tracking-tight text-">
-                    <Label className="pb-3 flex text-muted-foreground">
-                      Nome do perfil
-                    </Label>
-                    MagaluLucas
-                  </span>
-                  <p className="text-xs text-muted-foreground">
-                    Nome que será usado no seu site
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </>
-        );
-      case 2:
-        return (
-          <CreateProfile
-            onDataChange={(data) => handleDataChange(3, data)}
-            setFormData={setFormData}
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
-          />
-        );
-    }
-  };
-
-  const handleNext = () => {
-    if (currentStep === 1) {
-      setCurrentStep(currentStep + 1);
-      return;
+      return data;
+    } catch (error: any) {
+      throw new Error(error.message || "Erro na requisição");
     }
   };
 
@@ -116,7 +50,32 @@ export const Profiles = () => {
       </h1>
 
       <div className="rounded-md bg-card p-6 overflow-y-auto h-screen">
-        {renderStep()}
+        {(Array.isArray(user) ? user : [user]).map((item) => (
+          <div key={item._id} className="mb-6">
+            {/* Só mostra o Card se não estiver editando esse item */}
+            {editandoId !== item._id && (
+              <CardProfile
+                username={item.username}
+                onEditar={() => setEditandoId(item._id)}
+              />
+            )}
+
+            {/* Mostra o formulário se estiver editando */}
+            {editandoId === item._id && (
+              <CreateProfile
+                username={item.username}
+                onDataChange={async (data) => {
+                  await updateUsername(data.username);
+                  setEditandoId(null); // <- volta ao modo visual após salvar
+                }}
+                onCancelar={() => setEditandoId(null)}
+                currentStep={1}
+                setCurrentStep={() => {}}
+                setFormData={() => {}}
+              />
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );

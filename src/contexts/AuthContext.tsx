@@ -7,6 +7,7 @@ type AuthContextType = {
   user: {
     _id: string;
     email: string;
+    username?: string;
     name: string;
     telefone: string;
     plano: string;

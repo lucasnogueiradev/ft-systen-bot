@@ -39,7 +39,7 @@ export const AccountMenu = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
         <DropdownMenuLabel className="flex flex-col">
-          <span>Pano: {user?.plano}</span>
+          <span>Plano: {user?.plano}</span>
           <span className="text-xs font-normal text-muted-foreground">
             {user?.email}
           </span>

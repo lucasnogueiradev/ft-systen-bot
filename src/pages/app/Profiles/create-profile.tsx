@@ -8,51 +8,72 @@ import {
 import { Input } from "../../../components/ui/input";
 import { Label } from "../../../components/ui/label";
 
-import { CreateFluxoProps, FormData } from "../../../types/index";
+import { FormData } from "../../../types/index";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const FormSchema = z.object({
-  name: z.string().min(1, "O campo não pode estar vazio."),
+  username: z
+    .string()
+    .min(1, "O campo não pode estar vazio.")
+    .refine((val) => !/\s/.test(val), {
+      message: "O nome não pode conter espaços.",
+    }),
 });
 
 type FormValues = z.infer<typeof FormSchema>;
+export interface CreateFluxoProps {
+  onDataChange: (data: any) => void;
+  onCancelar?: () => void;
+  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  currentStep: number;
+  username?: string;
+  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+}
 
 export const CreateProfile = ({
   currentStep,
   setCurrentStep,
   setFormData,
+  onDataChange,
+  onCancelar,
 }: CreateFluxoProps) => {
-  const handleStepData = (data: FormValues) => {
-    setFormData((prevData: FormData) => ({
-      ...prevData,
-      fluxo: {
-        name: data?.name,
-      },
-    }));
-
-    toast(
-      <span>
-        Fluxo criado como:{" "}
-        <span style={{ color: "green", fontWeight: "500" }}>{data.name}</span>
-      </span>
-    );
-  };
-
-  const { register, handleSubmit } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm<FormValues>({
     resolver: zodResolver(FormSchema),
     mode: "onChange",
   });
 
   const onSubmit = (data: FormValues) => {
-    handleStepData(data);
-    console.log("data", data);
-    setCurrentStep(currentStep + 1);
+    if (setFormData) {
+      setFormData((prevData: FormData) => ({
+        ...prevData,
+        fluxo: {
+          name: data.username,
+        },
+      }));
+    }
+
+    onDataChange({ username: data.username });
+
+    handleBack();
+
+    toast(
+      <span>
+        Loja atualizada como:{" "}
+        <span style={{ color: "green", fontWeight: "500" }}>
+          {data.username}
+        </span>
+      </span>
+    );
   };
 
-  const handleNext = () => {
+  const handleBack = () => {
     if (currentStep === 2) {
       setCurrentStep(currentStep - 1);
       return;
@@ -62,8 +83,8 @@ export const CreateProfile = ({
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div className="grid grid-cols-3 gap-4">
-          <Card>
+        <div className="">
+          <Card className="border-0 border-green-500 bg-blue-400/10 md:w-[400px]">
             <CardHeader className="flex-row justify-between">
               <CardTitle className="text-base font-semibold text-muted-foreground bg-amber-400 w-16 h-16 rounded-full flex items-center justify-center">
                 <p className="text-slate-800 text-2xl">M</p>
@@ -77,25 +98,33 @@ export const CreateProfile = ({
 
                 <Input
                   placeholder="Insira o novo nome do sua loja"
-                  {...register("name")}
+                  {...register("username")}
                   className="w-full bg-blue-400/10 text-blue-500"
+                  disabled={isSubmitting}
+                  error={errors.username?.message}
                 />
               </span>
               <p className="text-xs text-muted-foreground"></p>
             </CardContent>
             <div className="flex min-h-24 flex-col">
               <div className="flex items-center justify-end gap-8 my-6 pr-6">
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={handleNext}
-                  className="flex items-center text-blue-500 bg-transparent"
-                >
-                  Voltar
-                </Button>
+                {onCancelar && (
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={onCancelar}
+                    className="text-blue-500 bg-transparent"
+                  >
+                    Voltar
+                  </Button>
+                )}
 
-                <Button type="submit" className="bg-green-500 text-white">
-                  Salvar
+                <Button
+                  type="submit"
+                  className="bg-green-500 text-white"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Salvando..." : "Salvar"}
                 </Button>
               </div>
             </div>
