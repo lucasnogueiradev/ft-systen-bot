@@ -13,32 +13,48 @@ import {
 } from "./ui/sidebar";
 
 // Menu items.import { FcConferenceCall } from "react-icons/fc";
+import { HiUsers } from "react-icons/hi2";
+
 import { FcContacts } from "react-icons/fc";
 import { FcDoughnutChart } from "react-icons/fc";
 import { FcGenealogy } from "react-icons/fc";
-import { FcCurrencyExchange } from "react-icons/fc";
+import { IoStorefront } from "react-icons/io5";
+
+import { MdSpaceDashboard } from "react-icons/md";
+import { RiRobot3Fill } from "react-icons/ri";
+import { FaCartPlus } from "react-icons/fa6";
 
 const items = [
   {
     title: "Dashboard",
     url: "/",
-    icon: FcDoughnutChart,
+    icon: MdSpaceDashboard,
   },
   {
-    title: "Assinaturas",
-    url: "#",
-    icon: FcCurrencyExchange,
+    title: "Meus Perfis",
+    url: "/profiles",
+    icon: HiUsers,
   },
   {
-    title: "Contatos",
-    url: "#",
-    icon: FcContacts,
+    title: "Divulgador",
+    url: "/bot-telegram",
+    icon: RiRobot3Fill,
   },
   {
-    title: "Bots",
-    url: "/bots",
-    icon: FcGenealogy,
+    title: "Configurar lojas",
+    url: "/lojas",
+    icon: IoStorefront,
   },
+  {
+    title: "Produtos",
+    url: "/products",
+    icon: FaCartPlus,
+  },
+  // {
+  //   title: "Bots",
+  //   url: "/bots",
+  //   icon: FcGenealogy,
+  // },
 ];
 
 export function AppSidebar() {
@@ -48,10 +64,11 @@ export function AppSidebar() {
     <Sidebar collapsible="icon" variant="floating">
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel className="gap-4 p-4 mt-4">
-            <img src={Loggo} className="w-9 " />
-            <h2 className="font-geist text-sm text-muted-foreground text-green-600">
-              Chatbot
+          <SidebarGroupLabel className="gap-2 p-4 mt-4">
+            <img src={Loggo} className="w-6" />
+            <h2 className="font-geist text-base text-foreground text-green-600">
+              Divulgador
+              <span className="text-foreground font-bold">Pro</span>
             </h2>
           </SidebarGroupLabel>
 
@@ -70,9 +87,9 @@ export function AppSidebar() {
                     <SidebarMenuButton asChild>
                       <a href={item.url} className=" font-geist">
                         <span>
-                          <item.icon className="text-3xl flex  size-6" />
+                          <item.icon className="text-3xl flex  size-5 text-green-600" />
                         </span>
-                        <span className="font-medium flex w-full items-center px-2 py-1 text-muted-foreground underline-offset-2 gap-x-4">
+                        <span className="font-medium flex w-full items-center px-2 py-1 text-foreground underline-offset-2 gap-x-4">
                           {item.title}
                         </span>
                       </a>

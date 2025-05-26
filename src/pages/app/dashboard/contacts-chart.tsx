@@ -29,7 +29,7 @@ export const ContactsChart = () => {
       <CardHeader className="flex-row items-center justify-between pb-8">
         <div className="text-base font-medium">
           <CardTitle className="text-muted-foreground ">
-            Relátorios total de contatos
+            Relátorios de promoções geradas
           </CardTitle>
           <CardDescription className="text-xs text-muted-foreground">
             Relátorios diário do período

@@ -5,15 +5,18 @@ import { router } from "./routes";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "./contexts/theme/theme.provider";
+import { AuthProvider } from "./contexts/AuthContext";
 
 export function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="otimize-theme">
-      <HelmetProvider>
-        <Toaster richColors />
-        <Helmet titleTemplate="%s | Otimize Sistema" />
-        <RouterProvider router={router} />;
-      </HelmetProvider>
+    <ThemeProvider defaultTheme="dark" storageKey="otimize-theme">
+      <AuthProvider>
+        <HelmetProvider>
+          <Toaster richColors />
+          <Helmet titleTemplate="%s | Otimize Sistema" />
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

@@ -6,15 +6,19 @@ import { AppSidebar } from "../../components/app-sidebar";
 // import React from "react";
 
 export function AppLayout() {
-  // const [open, setOpen] = React.useState(true);
   return (
     <div className="flex min-h-screen flex-col antialiased bg-muted">
       <Header />
-      {/* Provedor de contexto para o Sidebar */}
+
       <SidebarProvider>
+        {/* Sidebar com largura fixa no desktop, escondido no mobile */}
         <AppSidebar />
-        <SidebarTrigger className="-top-10 flex -my-10 z-50" />
-        <main className="flex flex-1 flex-col max-h-screen gap-4 p-8 pt-6">
+
+        {/* Botão para abrir sidebar só aparece no mobile */}
+        <SidebarTrigger className="fixed top-4 left-4 z-50 md:hidden" />
+
+        {/* Main ocupa toda tela no mobile, e fica com margem esquerda no desktop para dar espaço ao sidebar */}
+        <main className="flex flex-col h-full gap-4 p-4 md:pl-72 w-full overflow-hidden">
           <Outlet />
         </main>
       </SidebarProvider>

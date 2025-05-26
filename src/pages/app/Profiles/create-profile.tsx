@@ -27,7 +27,7 @@ const FormSchema = z.object({
 
 type FormValues = z.infer<typeof FormSchema>;
 
-export const CreateFluxo = ({
+export const CreateProfile = ({
   currentStep,
   setCurrentStep,
   setFormData,
@@ -55,58 +55,59 @@ export const CreateFluxo = ({
 
   const onSubmit = (data: FormValues) => {
     handleStepData(data);
-
+    console.log("data", data);
     setCurrentStep(currentStep + 1);
+  };
+
+  const handleNext = () => {
+    if (currentStep === 2) {
+      setCurrentStep(currentStep - 1);
+      return;
+    }
   };
 
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <Card className="grid grid-cols-1 gap-10">
-          <div className="flex min-h-24 flex-col">
-            <CardHeader>
-              <CardTitle className="flex flex-col text-sm">
-                Nome
-                <span className="text-sm font-normal text-muted-foreground">
-                  Dê um nome para seu fluxo
-                </span>
+        <div className="grid grid-cols-3 gap-4">
+          <Card>
+            <CardHeader className="flex-row justify-between">
+              <CardTitle className="text-base font-semibold text-muted-foreground bg-amber-400 w-16 h-16 rounded-full flex items-center justify-center">
+                <p className="text-slate-800 text-2xl">M</p>
               </CardTitle>
             </CardHeader>
+            <CardContent className="space-y-1 pt-6">
+              <span className="text-1xl font-semibold tracking-tight text-white">
+                <Label className="pb-3 pl-1 flex text-muted-foreground">
+                  Nome da Loja 🛍️
+                </Label>
 
-            <CardContent>
-              <div className="flex flex-row items-center gap-2">
-                <div className="flex w-full flex-col">
-                  <Label className="pb-2 pl-1"></Label>
-
-                  <Input
-                    placeholder="Insira um nome para seu fluxo"
-                    {...register("name")}
-                    className="w-full"
-                  />
-                </div>
-              </div>
-              <Alert className="mt-6 flex flex-col w-full bg-blue-100">
-                {/* <Terminal className="h-4 w-4" /> */}
-                <TiInfoLarge className="text-primary text-blue-100" />
-
-                <AlertTitle className="text-muted-foreground">Info!</AlertTitle>
-                <AlertDescription className="text-muted-foreground">
-                  Ao criar um bot de atendimento será necessario, configurar na
-                  proxima etapa.
-                </AlertDescription>
-              </Alert>
-              <div className="flex items-center justify-end gap-4 my-6 mx-2">
-                <Button type="button" variant="outline">
+                <Input
+                  placeholder="Insira o novo nome do sua loja"
+                  {...register("name")}
+                  className="w-full bg-blue-400/10 text-blue-500"
+                />
+              </span>
+              <p className="text-xs text-muted-foreground"></p>
+            </CardContent>
+            <div className="flex min-h-24 flex-col">
+              <div className="flex items-center justify-end gap-8 my-6 pr-6">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleNext}
+                  className="flex items-center text-blue-500 bg-transparent"
+                >
                   Voltar
                 </Button>
 
-                <Button type="submit" className="bg-green-600">
-                  Avançar
+                <Button type="submit" className="bg-green-500 text-white">
+                  Salvar
                 </Button>
               </div>
-            </CardContent>
-          </div>
-        </Card>
+            </div>
+          </Card>
+        </div>
       </form>
     </>
   );

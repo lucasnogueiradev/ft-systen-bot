@@ -18,108 +18,62 @@ export const Dashboard = () => {
       <h1 className="text-1xl font-500 tracking-tight text-muted-foreground">
         Dashboard
       </h1>
-      <div className="grid grid-cols-3 gap-4">
-        <Card>
-          <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
-            <CardTitle className="text-base font-semibold text-muted-foreground">
-              Quantidade de Bots
-            </CardTitle>
-            <GoDependabot className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent className="space-y-1">
-            <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-              0
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Quantidade de bos ativo
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
-            <CardTitle className="text-base font-semibold text-muted-foreground">
-              Atendimentos Hoje
-            </CardTitle>
-            <RiCustomerService2Line className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent className="space-y-1">
-            <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-              0
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Quantidade de atendimentos hoje
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
-            <CardTitle className="text-base font-semibold text-muted-foreground">
-              Atendimentos Total
-            </CardTitle>
-            <RiCustomerService2Line className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent className="space-y-1">
-            <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-              0
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Quantidade de atendimentos total
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
-            <CardTitle className="text-base font-semibold text-muted-foreground">
-              Mensagens enviadas
-            </CardTitle>
-            <FaRegComments className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent className="space-y-1">
-            <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-              0
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Quantidade de mensagens enviadas
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
-            <CardTitle className="text-base font-semibold text-muted-foreground">
-              Mensagens recebidas hoje
-            </CardTitle>
-            <FaRegComments className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent className="space-y-1">
-            <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-              0
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Quantidade de mensagens recebidas hoje
-            </p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
-            <CardTitle className="text-base font-semibold text-muted-foreground">
-              Novos contatos hoje
-            </CardTitle>
-            <RiContactsLine className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent className="space-y-1">
-            <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-              0
-            </span>
-            <p className="text-xs text-muted-foreground">
-              Quantidade de novos contatos hoje
-            </p>
-          </CardContent>
-        </Card>
-      </div>
+      <div className="overflow-y-auto h-screen ">
+        <div className="flex gap-3 flex-col md:flex-row md:justify-between mb-3 ">
+          <Card className="md:flex md:flex-col md:w-[100%]">
+            <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
+              <CardTitle className="text-base font-semibold text-muted-foreground">
+                Quantidade de promoções geradas
+              </CardTitle>
+              <GoDependabot className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent className="space-y-1">
+              <span className="text-2xl font-semibold tracking-tight text-emerald-500">
+                0
+              </span>
+              <p className="text-xs text-muted-foreground">
+                Quantidade de promoções geradas no telegram
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="md:flex md:flex-col md:w-[100%]">
+            <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
+              <CardTitle className="text-base font-semibold text-muted-foreground">
+                Quatidades de lojas liberadas
+              </CardTitle>
+              <RiCustomerService2Line className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent className="space-y-1">
+              <span className="text-2xl font-semibold tracking-tight text-emerald-500">
+                0
+              </span>
+              <p className="text-xs text-muted-foreground">
+                Quatidades de lojas liberadas no seu plano
+              </p>
+            </CardContent>
+          </Card>
+          <Card className="md:flex md:flex-col md:w-[100%]">
+            <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
+              <CardTitle className="text-base font-semibold text-muted-foreground">
+                Quantidade de lojas ativas
+              </CardTitle>
+              <RiContactsLine className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent className="space-y-1">
+              <span className="text-2xl font-semibold tracking-tight text-emerald-500">
+                0
+              </span>
+              <p className="text-xs text-muted-foreground">
+                Quantidade de lojas configuradas
+              </p>
+            </CardContent>
+          </Card>
+        </div>
 
-      <div className="grid grid-cols-9 gap-4">
-        <ContactsChart />
-        <MessagesChart />
+        <div className="flex flex-col gap-3 md:flex-row">
+          <ContactsChart />
+          <MessagesChart />
+        </div>
       </div>
     </section>
   );
