@@ -18,7 +18,7 @@ export function AppLayout() {
         <SidebarTrigger className="fixed top-4 left-4 z-50 md:hidden" />
 
         {/* Main ocupa toda tela no mobile, e fica com margem esquerda no desktop para dar espaço ao sidebar */}
-        <main className="flex flex-col h-full gap-4 p-4 md:pl-72 w-full overflow-hidden">
+        <main className="flex flex-col h-full overflow gap-4 p-4 md:pl-72 w-full overflow-hidden">
           <Outlet />
         </main>
       </SidebarProvider>
