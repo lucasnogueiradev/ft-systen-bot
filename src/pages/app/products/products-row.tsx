@@ -1,7 +1,25 @@
 import { TableRow, TableCell } from "../../../components/ui/table";
 
 import magalu from "../../../assets/magalu.png";
-export const ProductsTableRow = () => {
+
+export interface IProduct {
+  chat_id: number;
+  title: string;
+  priceValue: string;
+  priceOriginal: string;
+  finalUrl: string;
+  imageUrl: string;
+  domain: string;
+  userId: string;
+  platform: string;
+}
+
+interface ProductsTableRowProps {
+  product: IProduct;
+}
+export const ProductsTableRow: React.FC<ProductsTableRowProps> = ({
+  product,
+}) => {
   return (
     <TableRow>
       <TableCell className="w-[140px]">
@@ -13,7 +31,7 @@ export const ProductsTableRow = () => {
               className="h-full w-full object-cover rounded-full"
             />
           </div>
-          <span className="text-muted-foreground">Magalu</span>
+          <span className="text-muted-foreground">{product.platform}</span>
         </div>
       </TableCell>
 
@@ -21,27 +39,29 @@ export const ProductsTableRow = () => {
         <div className="flex items-center gap-3">
           <div className="h-14 w-18 rounded-md overflow-hidden">
             <img
-              src="https://a-static.mlcdn.com.br/800x560/fritadeira-eletrica-sem-oleo-air-fryer-mondial-pratic-af-35-bf-preta-35l-com-timer/magazineluiza/236479800/132767d0349df4a2b9f676d26f62505c.jpg"
+              src={product.imageUrl}
               alt="Produto"
               className="h-full w-full object-cover"
             />
           </div>
-          <span className="text-muted-foreground">Geladeira Eletrolux</span>
+          <span className="text-muted-foreground">{product.title}</span>
         </div>
       </TableCell>
 
       <TableCell className="w-[140px]">
-        <span>R$ 2.500,00</span>
-        <s className="block text-xs text-muted-foreground">R$ 3.000,00</s>
+        <span>{product.priceValue}</span>
+        <s className="block text-xs text-muted-foreground">
+          {product.priceOriginal}
+        </s>
       </TableCell>
 
       <TableCell className="w-[240px]">
         <span className="block truncate text-green-700 bg-green-200 px-2 py-1 rounded-md font-semibold">
-          https://www.magazinevoce.com.br/zeroonze/p/kh4c2c96ed/
+          {product.finalUrl}
         </span>
       </TableCell>
 
-      <TableCell className="w-[140px]">21 de nov de 2024</TableCell>
+      {/* <TableCell className="w-[140px]">{product.createdAt}</TableCell> */}
     </TableRow>
   );
 };

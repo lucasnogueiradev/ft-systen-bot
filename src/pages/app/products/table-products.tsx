@@ -13,19 +13,44 @@ import { useState } from "react";
 
 import { useEffect } from "react";
 
-import { ProductsTableRow } from "./products-row";
+import { IProduct, ProductsTableRow } from "./products-row";
 import { ProductsTableRowSkeleton } from "./products-row-skeleton";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export function TableProducts() {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const { user } = useAuth();
+  const userId = user?._id;
+
   const [isLoading, setIsLoading] = useState(true);
   // Simula o carregamento por 2 segundos
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false); // Após 2 segundos, termina o loading
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
+    setIsLoading(true);
+    async function fetchProducts() {
+      const token = localStorage.getItem("token");
+      try {
+        const res = await fetch(
+          `http://localhost:3333/product?userId=${userId}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (!res.ok) {
+          throw new Error("Erro ao buscar produtos");
+        }
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error(error);
+        setIsLoading(false);
+      }
+    }
+    fetchProducts();
+    setIsLoading(false);
+  }, [userId]);
 
   return (
     <>
@@ -55,19 +80,22 @@ export function TableProducts() {
                   <TableHead className="w-[240px] text-foreground">
                     Link do afiliado
                   </TableHead>
-                  <TableHead className="w-[140px] text-foreground">
+                  {/* <TableHead className="w-[140px] text-foreground">
                     Data de criação
-                  </TableHead>
+                  </TableHead> */}
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {Array.from({ length: 19 }).map((_, i) =>
-                  isLoading ? (
-                    <ProductsTableRowSkeleton key={i} />
-                  ) : (
-                    <ProductsTableRow key={i} />
-                  )
-                )}
+                {isLoading
+                  ? Array.from({ length: 5 }).map((_, i) => (
+                      <ProductsTableRowSkeleton key={i} />
+                    ))
+                  : products.map((product) => (
+                      <ProductsTableRow
+                        key={product.chat_id}
+                        product={product}
+                      />
+                    ))}
               </TableBody>
             </Table>
           </div>

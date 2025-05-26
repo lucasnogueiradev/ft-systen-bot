@@ -10,8 +10,42 @@ import { RiContactsLine, RiCustomerService2Line } from "react-icons/ri";
 
 import { ContactsChart } from "./contacts-chart";
 import { MessagesChart } from "./messages-chart";
+import { IProduct } from "../products/products-row";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export const Dashboard = () => {
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  const userId = user?._id;
+  useEffect(() => {
+    async function fetchProducts() {
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      try {
+        const response = await fetch(
+          `http://localhost:3333/product?userId=${userId}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (!response.ok) throw new Error("Erro ao buscar produtos");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Erro ao buscar produtos:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProducts();
+  }, [userId]);
+
   return (
     <section className="flex flex-col gap-4">
       <Helmet title="Relatórios" />
@@ -20,8 +54,6 @@ export const Dashboard = () => {
       </h1>
       <div className="overflow-y-auto h-[85vh]">
         <div className="flex gap-3 flex-col md:flex-row md:justify-between mt-3">
-          <ContactsChart />
-          <MessagesChart />
           <Card className="md:flex md:flex-col md:w-[100%]">
             <CardHeader className="flex-row items-center justify-between space-x-8 gb-2">
               <CardTitle className="text-base font-semibold text-muted-foreground">
@@ -31,7 +63,7 @@ export const Dashboard = () => {
             </CardHeader>
             <CardContent className="space-y-1">
               <span className="text-2xl font-semibold tracking-tight text-emerald-500">
-                0
+                {loading ? "Carregando..." : products.length}
               </span>
               <p className="text-xs text-muted-foreground">
                 Quantidade de promoções geradas no telegram
@@ -70,6 +102,8 @@ export const Dashboard = () => {
               </p>
             </CardContent>
           </Card>
+          <ContactsChart />
+          <MessagesChart />
         </div>
       </div>
     </section>
