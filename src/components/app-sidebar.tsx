@@ -15,6 +15,8 @@ import {
 import { HiUsers } from "react-icons/hi2";
 
 import { IoStorefront } from "react-icons/io5";
+import { BsWindowStack } from "react-icons/bs";
+import { FaWhatsapp } from "react-icons/fa";
 
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiRobot3Fill } from "react-icons/ri";
@@ -45,6 +47,16 @@ const items = [
     title: "Produtos",
     url: "/products",
     icon: FaCartPlus,
+  },
+  {
+    title: "Meu site",
+    url: "/site",
+    icon: BsWindowStack,
+  },
+  {
+    title: "Disparos",
+    url: "/disparos",
+    icon: FaWhatsapp,
   },
   // {
   //   title: "Bots",

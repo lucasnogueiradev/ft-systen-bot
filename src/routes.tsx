@@ -1,6 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-// import { RotaPrivada } from "./components/RotaPrivada";
-
 import { Dashboard } from "./pages/app/dashboard/dashboard";
 import { ConsultarBot } from "./pages/app/bot/consultarBot";
 import { Profiles } from "./pages/app/Profiles/profiles";
@@ -13,11 +11,13 @@ import { AuthLayout } from "./pages/_layouts/auth";
 import { SignIn } from "./pages/auth/signIn";
 import { SignUp } from "./pages/auth/register";
 import { RotaPrivada } from "./contexts/rotaprivada";
+import SiteCustomizer from "./pages/app/site/site";
+import Disparos from "./pages/app/disparos/disparos";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <RotaPrivada />, // ✅ Aqui entra o guard
+    element: <RotaPrivada />,
     children: [
       {
         path: "/",
@@ -29,6 +29,8 @@ export const router = createBrowserRouter([
           { path: "/bot-telegram", element: <Divulgador /> },
           { path: "/lojas", element: <Lojas /> },
           { path: "/products", element: <Products /> },
+          { path: "/site", element: <SiteCustomizer /> },
+          { path: "/disparos", element: <Disparos /> },
         ],
       },
     ],
