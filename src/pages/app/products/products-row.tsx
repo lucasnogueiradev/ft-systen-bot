@@ -3,6 +3,7 @@ import { TableRow, TableCell } from "../../../components/ui/table";
 import magalu from "../../../assets/magalu.png";
 
 export interface IProduct {
+  _id: string;
   chat_id: number;
   title: string;
   priceValue: string;
