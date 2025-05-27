@@ -1,4 +1,4 @@
-import Loggo from "../assets/icon.png";
+import Loggo from "../assets/logo-divulgadorpro.png";
 
 import {
   Sidebar,
@@ -61,11 +61,12 @@ export function AppSidebar() {
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel className="gap-2 p-4 mt-4">
-            <img src={Loggo} className="w-6" />
-            <h2 className="font-geist text-base text-foreground text-green-600">
-              Divulgador
-              <span className="text-foreground font-bold">Pro</span>
-            </h2>
+            <article className="flex md:hidden items-center my-4">
+              <img src={Loggo} className="w-[170px] pr-4" />
+              {/* <h2 className="font-geist text-lg text-green-600">
+            Divulgador <span className="text-foreground font-bold">Pro</span>
+          </h2> */}
+            </article>
           </SidebarGroupLabel>
 
           <SidebarGroupLabel className="mt-9 duration-200 font-geist flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium">
