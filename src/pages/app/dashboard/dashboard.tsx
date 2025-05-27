@@ -13,6 +13,7 @@ import { MessagesChart } from "./messages-chart";
 import { IProduct } from "../products/products-row";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../contexts/AuthContext";
+import { AppLoader } from "../../../components/ui/loading";
 
 export const Dashboard = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
@@ -52,6 +53,7 @@ export const Dashboard = () => {
       <h1 className="text-1xl font-500 tracking-tight text-muted-foreground">
         Dashboard
       </h1>
+      {loading && <AppLoader fullscreen={loading} />}
       <div className="overflow-y-auto h-[85vh]">
         <div className="flex gap-3 flex-col md:flex-row md:justify-between mt-3">
           <Card className="md:flex md:flex-col md:w-[100%]">

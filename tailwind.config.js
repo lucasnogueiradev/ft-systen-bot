@@ -65,6 +65,22 @@ export default {
         roboto: ["Roboto", "sans-serif"],
         geist: ["Geist", "sans-serif"],
       },
+      animation: {
+        "logo-bounce": "logoBounce 2s ease-in-out infinite",
+        "bounce-delay-1": "loaderBounce 1.4s ease-in-out infinite 0s",
+        "bounce-delay-2": "loaderBounce 1.4s ease-in-out infinite 0.2s",
+        "bounce-delay-3": "loaderBounce 1.4s ease-in-out infinite 0.4s",
+      },
+      keyframes: {
+        loaderBounce: {
+          "0%, 80%, 100%": { transform: "scale(0.6)", opacity: 0.4 },
+          "40%": { transform: "scale(1)", opacity: 1 },
+        },
+        logoBounce: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" },
+        },
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

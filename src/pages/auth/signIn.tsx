@@ -10,7 +10,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Loggo from "../../assets/icon.png";
+import Loggo from "../../assets/logo-divulgadorpro.png";
 import capa from "../../assets/chat-fundo2.jpg";
 
 const singInForm = z.object({
@@ -22,6 +22,8 @@ type SignInForm = z.infer<typeof singInForm>;
 
 export const SignIn = () => {
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const {
@@ -37,6 +39,8 @@ export const SignIn = () => {
     }
   }, [navigate]);
   async function handleSignIn(data: SignInForm) {
+    setIsLoading(true);
+
     try {
       const response = await fetch(
         "https://bk-divulgadorpro-git-main-lucasnogueiradevs-projects.vercel.app/login",
@@ -71,6 +75,8 @@ export const SignIn = () => {
       navigate("/");
     } catch (error) {
       toast.error("Erro ao conectar com o servidor");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -84,11 +90,11 @@ export const SignIn = () => {
         style={{ backgroundImage: `url(${capa})` }}
       >
         {/* Logo e título */}
-        <article className="flex md:hidden items-center -mt-8 mb-4">
-          <img src={Loggo} className="w-30 h-10 pr-4" />
-          <h2 className="font-geist text-lg text-green-600">
+        <article className="flex md:hidden items-center -mt-8 mb-6">
+          <img src={Loggo} className="w-[200px] pr-4" />
+          {/* <h2 className="font-geist text-lg text-green-600">
             Divulgador <span className="text-foreground font-bold">Pro</span>
-          </h2>
+          </h2> */}
         </article>
 
         <div className="flex flex-col bg-white w-full rounded-tl-[100px] md:rounded-none items-center justify-center p-10 h-[90%] md:h-[100%]">
@@ -152,6 +158,7 @@ export const SignIn = () => {
             </div>
             <div className="p-4 flex mt-4">
               <Button
+                isLoading={isLoading}
                 disabled={isSubmitting}
                 type="submit"
                 className="w-full bg-green-600 text-lg font-bold text-white hover:bg-green-700 py-6 rounded-lg "

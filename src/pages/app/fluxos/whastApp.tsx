@@ -62,7 +62,12 @@ export function FluxosWhatsApp() {
               </TableBody>
             </Table>
           </div>
-          <PaginationTable pageIndex={0} totalCount={20} perPage={10} />
+          <PaginationTable
+            pageIndex={0}
+            totalCount={20}
+            perPage={10}
+            onPageChange={() => {}}
+          />
         </div>
       </section>
     </>

@@ -4,6 +4,7 @@ import { CardLoja } from "./card-loja";
 import { CreateLojas } from "./create-lojas";
 
 import { useAuth } from "../../../contexts/AuthContext";
+import { AppLoader } from "../../../components/ui/loading";
 
 // interface LojaPersonalizada {
 //   nomePersonalizado: string;
@@ -52,12 +53,13 @@ export function Lojas() {
         }
         console.log("loja nome atualizado", data.lojas);
         updateLojas(data.lojas);
-        setLoading(false);
       } else {
         console.error("Erro ao buscar lojas:", data);
       }
     } catch (error) {
       console.error("Erro ao conectar com o servidor:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -119,6 +121,7 @@ export function Lojas() {
             <span>Configurar Lojas</span>
           </h1>
         </div>
+        {loading && <AppLoader fullscreen={loading} />}
         <div className="rounded-md bg-primary-foreground h-[83vh] overflow-y-auto overflow-x-hidden flex items-center justify-center">
           <div className="rounded-md p-6 md:h-[80vh] h-full m-auto">
             {/* <FilterTableWhats /> */}

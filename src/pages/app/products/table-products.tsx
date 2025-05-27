@@ -14,12 +14,15 @@ import { useState, useEffect } from "react";
 import { IProduct, ProductsTableRow } from "./products-row";
 import { ProductsTableRowSkeleton } from "./products-row-skeleton";
 import { useAuth } from "../../../contexts/AuthContext";
+import { AppLoader } from "../../../components/ui/loading";
 
 export function TableProducts() {
   const [products, setProducts] = useState<IProduct[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [pageIndex, setPageIndex] = useState(0); // Página atual
-  const [totalCount, setTotalCount] = useState(0); // Total de produtos no banco
+
+  const [pageIndex, setPageIndex] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+
   const perPage = 10;
 
   const { user } = useAuth();
@@ -27,7 +30,7 @@ export function TableProducts() {
 
   useEffect(() => {
     async function fetchProducts() {
-      setIsLoading(true);
+      setLoading(true);
       const token = localStorage.getItem("token");
       try {
         const res = await fetch(
@@ -43,13 +46,12 @@ export function TableProducts() {
         );
         if (!res.ok) throw new Error("Erro ao buscar produtos");
         const data = await res.json();
-
-        setProducts(data.products || data); // <- se sua API ainda não retorna `products`
-        setTotalCount(data.total || data.length); // <- ajustar conforme sua API
+        setProducts(data.products || data);
+        setTotalCount(data.total || data.length);
       } catch (error) {
         console.error(error);
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
     }
 
@@ -60,6 +62,7 @@ export function TableProducts() {
     <>
       <Helmet title="Fluxos" />
       <section className="flex flex-col gap-4">
+        {loading && <AppLoader fullscreen={loading} />}
         <div className="space-y-2.5">
           <header className="flex flex-row items-center justify-between">
             <FilterTableWhats />
@@ -83,7 +86,7 @@ export function TableProducts() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {isLoading
+                {loading
                   ? Array.from({ length: perPage }).map((_, i) => (
                       <ProductsTableRowSkeleton key={i} />
                     ))
@@ -93,7 +96,6 @@ export function TableProducts() {
               </TableBody>
             </Table>
           </div>
-
           <PaginationTable
             pageIndex={pageIndex}
             totalCount={totalCount}
