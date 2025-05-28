@@ -25,6 +25,8 @@ type AuthContextType = {
   } | null;
   updateLojas: (lojasAtualizadas: any) => void;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  setProductsContext: React.Dispatch<React.SetStateAction<IProducts[] | null>>;
+  productsContext: IProducts[] | null;
 };
 
 interface User {
@@ -46,16 +48,29 @@ interface User {
   ];
 }
 
+interface IProducts {
+  image: string;
+  name: string;
+  originalPrice: string;
+  price: string;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [planId, setPlanIdState] = useState<string>("");
   const [user, setUser] = useState<User | null>(null);
+  const [productsContext, setProductsContext] = useState<IProducts[] | null>(
+    null
+  );
+  console.log("🎯 productsContext no componente:", productsContext);
+
   // const [user, setUser] = useState<User | null>(null);
   // Carrega planId do localStorage quando a app iniciar
   useEffect(() => {
     const savedPlanId = localStorage.getItem("planId");
     const savedUser = localStorage.getItem("usuario");
+    // const productsSite = localStorage.getItem("product");
     if (savedUser) {
       const parsedUser = JSON.parse(savedUser);
       setUser(parsedUser);
@@ -63,6 +78,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     if (savedPlanId) {
       setPlanIdState(savedPlanId);
     }
+    // if (productsSite) {
+    //   setProductsContext(JSON.parse(productsSite));
+    // }
   }, []);
 
   // Sempre que o planId mudar, salva no localStorage
@@ -74,9 +92,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const updateLojas = (lojasAtualizadas: any) => {
     setUser((prev: any) => ({ ...prev, lojas: lojasAtualizadas }));
   };
+
   return (
     <AuthContext.Provider
-      value={{ planId, setPlanId, user, updateLojas, setUser }}
+      value={{
+        planId,
+        setPlanId,
+        user,
+        updateLojas,
+        setUser,
+        setProductsContext,
+        productsContext,
+      }}
     >
       {children}
     </AuthContext.Provider>

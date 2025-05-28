@@ -21,53 +21,55 @@ import { FaWhatsapp } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiRobot3Fill } from "react-icons/ri";
 import { FaCartPlus } from "react-icons/fa6";
-
-const items = [
-  {
-    title: "Relatórios",
-    url: "/",
-    icon: MdSpaceDashboard,
-  },
-  {
-    title: "Meus Perfis",
-    url: "/profiles",
-    icon: HiUsers,
-  },
-  {
-    title: "Divulgador",
-    url: "/bot-telegram",
-    icon: RiRobot3Fill,
-  },
-  {
-    title: "Configurar lojas",
-    url: "/lojas",
-    icon: IoStorefront,
-  },
-  {
-    title: "Produtos",
-    url: "/products",
-    icon: FaCartPlus,
-  },
-  {
-    title: "Meu site",
-    url: "/site",
-    icon: BsWindowStack,
-  },
-  {
-    title: "Disparos",
-    url: "/disparos",
-    icon: FaWhatsapp,
-  },
-  // {
-  //   title: "Bots",
-  //   url: "/bots",
-  //   icon: FcGenealogy,
-  // },
-];
+import { useAuth } from "../contexts/AuthContext";
 
 export function AppSidebar() {
   const { state } = useSidebar();
   console.log(state);
+  const { user } = useAuth();
+  const username = user?.username;
+  const items = [
+    {
+      title: "Relatórios",
+      url: "/",
+      icon: MdSpaceDashboard,
+    },
+    {
+      title: "Meus Perfis",
+      url: "/profiles",
+      icon: HiUsers,
+    },
+    {
+      title: "Divulgador",
+      url: "/bot-telegram",
+      icon: RiRobot3Fill,
+    },
+    {
+      title: "Configurar lojas",
+      url: "/lojas",
+      icon: IoStorefront,
+    },
+    {
+      title: "Produtos",
+      url: "/products",
+      icon: FaCartPlus,
+    },
+    {
+      title: "Meu site",
+      url: `/site/${username}`,
+      icon: BsWindowStack,
+    },
+    {
+      title: "Disparos",
+      url: "/disparos",
+      icon: FaWhatsapp,
+    },
+    // {
+    //   title: "Bots",
+    //   url: "/bots",
+    //   icon: FcGenealogy,
+    // },
+  ];
   return (
     <Sidebar collapsible="icon" variant="floating">
       <SidebarContent>

@@ -11,8 +11,10 @@ import { AuthLayout } from "./pages/_layouts/auth";
 import { SignIn } from "./pages/auth/signIn";
 import { SignUp } from "./pages/auth/register";
 import { RotaPrivada } from "./contexts/rotaprivada";
-import SiteCustomizer from "./pages/app/site/site";
+import { SiteCustomizer } from "./pages/app/site/site";
 import Disparos from "./pages/app/disparos/disparos";
+import { Layoutsite } from "./pages/_layouts/site";
+import { MySite } from "./pages/app/site";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +31,7 @@ export const router = createBrowserRouter([
           { path: "/bot-telegram", element: <Divulgador /> },
           { path: "/lojas", element: <Lojas /> },
           { path: "/products", element: <Products /> },
-          { path: "/site", element: <SiteCustomizer /> },
+          { path: "/site", element: <MySite /> },
           { path: "/disparos", element: <Disparos /> },
         ],
       },
@@ -43,5 +45,10 @@ export const router = createBrowserRouter([
       { path: "/auth/signIn", element: <SignIn /> },
       { path: "/auth/register", element: <SignUp /> },
     ],
+  },
+  {
+    path: "/:username",
+    element: <Layoutsite />,
+    children: [{ path: "", element: <SiteCustomizer /> }],
   },
 ]);

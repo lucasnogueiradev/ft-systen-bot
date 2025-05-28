@@ -17,6 +17,7 @@ import { useAuth } from "../../../contexts/AuthContext";
 import { AppLoader } from "../../../components/ui/loading";
 
 export function TableProducts() {
+  const { setProductsContext } = useAuth();
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const [pageIndex, setPageIndex] = useState(0);
@@ -46,8 +47,13 @@ export function TableProducts() {
         );
         if (!res.ok) throw new Error("Erro ao buscar produtos");
         const data = await res.json();
-        setProducts(data.products || data);
-        setTotalCount(data.total || data.length);
+        const produtos = data.products || data;
+        if (Array.isArray(produtos)) {
+          setProducts(produtos);
+          setProductsContext(produtos);
+          console.log("produtos da req", produtos);
+          setTotalCount(data.total || produtos.length);
+        }
       } catch (error) {
         console.error(error);
       } finally {
