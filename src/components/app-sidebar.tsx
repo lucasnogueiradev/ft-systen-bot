@@ -21,13 +21,10 @@ import { FaWhatsapp } from "react-icons/fa";
 import { MdSpaceDashboard } from "react-icons/md";
 import { RiRobot3Fill } from "react-icons/ri";
 import { FaCartPlus } from "react-icons/fa6";
-import { useAuth } from "../contexts/AuthContext";
 
 export function AppSidebar() {
   const { state } = useSidebar();
-  console.log(state);
-  const { user } = useAuth();
-  const username = user?.username;
+
   const items = [
     {
       title: "Relatórios",
@@ -56,7 +53,7 @@ export function AppSidebar() {
     },
     {
       title: "Meu site",
-      url: `/site/${username}`,
+      url: `/site`,
       icon: BsWindowStack,
     },
     {
