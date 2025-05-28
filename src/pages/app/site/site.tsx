@@ -177,8 +177,8 @@ export function SiteCustomizer() {
           Produtos em Destaque
         </h2>
         <section className="h-screen overflow-hidden">
-          <div className="h-full overflow-auto px-0 py-6">
-            <div className="flex flex-wrap gap-1 justify-center">
+          <div className="h-[80vh] overflow-y-scroll px-0 py-6">
+            <div className="flex flex-wrap gap-1">
               {products && products.length > 0 ? (
                 products.map((produto, index) => (
                   <ProductCard
