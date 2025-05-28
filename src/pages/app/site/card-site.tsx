@@ -5,6 +5,7 @@ interface ISiteProducts {
   name: string;
   originalPrice: string;
   price: string;
+  finalUrl: string;
 }
 
 export const ProductCard = ({
@@ -12,6 +13,7 @@ export const ProductCard = ({
   name,
   originalPrice,
   price,
+  finalUrl,
 }: ISiteProducts) => {
   return (
     <div className="bg-white shadow rounded p-2 justify-center w-[201px] ">
@@ -32,12 +34,15 @@ export const ProductCard = ({
 
         <p className="text-xl text-green-600 font-bold">R$ {price}</p>
       </div>
-      <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full flex-row flex gap-x-2  justify-center items-center">
+      <a
+        href={finalUrl}
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full flex-row flex gap-x-2  justify-center items-center"
+      >
         Acessar site{" "}
         <span>
           <FaExternalLinkAlt />
         </span>
-      </button>
+      </a>
     </div>
   );
 };

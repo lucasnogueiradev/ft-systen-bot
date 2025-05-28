@@ -115,6 +115,7 @@ interface ISiteProducts {
   title: string;
   priceOriginal: string;
   priceValue: string;
+  finalUrl: string;
 }
 
 export function SiteCustomizer() {
@@ -183,10 +184,11 @@ export function SiteCustomizer() {
                 products.map((produto, index) => (
                   <ProductCard
                     key={index}
-                    image={produto.imageUrl}
-                    name={produto.title}
-                    originalPrice={produto.priceOriginal}
-                    price={produto.priceValue}
+                    image={produto?.imageUrl}
+                    finalUrl={produto?.finalUrl}
+                    name={produto?.title}
+                    originalPrice={produto?.priceOriginal}
+                    price={produto?.priceValue}
                   />
                 ))
               ) : (
