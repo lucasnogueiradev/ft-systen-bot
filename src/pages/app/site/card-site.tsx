@@ -26,7 +26,10 @@ export const ProductCard = ({
         {name}
       </h3>
       <div className="mb-2">
-        <p className="text-sm text-red-500 line-through">R$ {originalPrice}</p>
+        <p className="text-sm text-red-500 line-through h-[20px]">
+          {originalPrice !== null && `R$ ${originalPrice}`}
+        </p>
+
         <p className="text-xl text-green-600 font-bold">R$ {price}</p>
       </div>
       <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full flex-row flex gap-x-2  justify-center items-center">
