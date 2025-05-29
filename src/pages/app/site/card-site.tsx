@@ -34,6 +34,7 @@ export const ProductCard = ({
 
         <p className="text-xl text-green-600 font-bold">R$ {price}</p>
       </div>
+
       <a
         href={finalUrl}
         className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-full flex-row flex gap-x-2  justify-center items-center"

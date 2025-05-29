@@ -12,9 +12,10 @@ import { SignIn } from "./pages/auth/signIn";
 import { SignUp } from "./pages/auth/register";
 import { RotaPrivada } from "./contexts/rotaprivada";
 import { SiteCustomizer } from "./pages/app/site/site";
-import Disparos from "./pages/app/disparos/disparos";
+// import Disparos from "./pages/app/disparos/disparos";
 import { Layoutsite } from "./pages/_layouts/site";
 import { MySite } from "./pages/app/site";
+import GroupManager from "./pages/app/disparos/disparos";
 
 export const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const router = createBrowserRouter([
           { path: "/lojas", element: <Lojas /> },
           { path: "/products", element: <Products /> },
           { path: "/site", element: <MySite /> },
-          { path: "/disparos", element: <Disparos /> },
+          { path: "/disparos", element: <GroupManager /> },
         ],
       },
     ],
