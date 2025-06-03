@@ -46,7 +46,7 @@ export default function GroupManager() {
             </button>
 
             {/* Lista de grupos */}
-            <div className="w-full max-w-xl space-y-4">
+            <div className="w-full max-w-xl space-y-4Se">
               {groups.length === 0 ? (
                 <p className="text-gray-500 text-center">
                   Nenhum grupo cadastrado ainda.

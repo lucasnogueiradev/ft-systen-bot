@@ -58,8 +58,9 @@ export function AppSidebar() {
       title: "Disparos",
       icon: FaWhatsapp,
       children: [
-        { title: "Selecionar grupo", url: "/disparos" },
-        { title: "Criar mensagem", url: "/disparos/telegram" },
+        { title: "Adicionar grupo", url: "/disparos" },
+        { title: "Criar mensagem", url: "/disparos/mensagem" },
+        { title: "Fazer disparo", url: "/criar-mensgem" },
       ],
     },
   ];
