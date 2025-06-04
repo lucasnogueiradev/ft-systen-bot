@@ -52,7 +52,7 @@ export const useTextFormatting = ({
     [textareaRef, setText]
   );
 
-  const addBoldFormatting = () => applyFormatting("**");
+  const addBoldFormatting = () => applyFormatting("*");
   const addItalicFormatting = () => applyFormatting("_");
   const addStrikethroughFormatting = () => applyFormatting("~");
 

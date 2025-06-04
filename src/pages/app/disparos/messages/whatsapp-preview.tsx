@@ -6,6 +6,18 @@ interface IMenssage {
   text: string;
 }
 
+function convertWhatsAppToMarkdown(text: string) {
+  return (
+    text
+      // Negrito WhatsApp (*) para Markdown (**)
+      .replace(/\*(.*?)\*/g, "**$1**")
+      // Itálico WhatsApp (_) para Markdown (*)
+      .replace(/_(.*?)_/g, "*$1*")
+  );
+  // Tachado WhatsApp (~) permanece igual no Markdown
+  // Caso queira adicionar algum tratamento, faça aqui
+}
+
 const WhatsAppPreview = ({ text }: IMenssage) => {
   const [internalText, setInternalText] = useState(text);
 
@@ -20,12 +32,14 @@ const WhatsAppPreview = ({ text }: IMenssage) => {
   const parcelamento = "10x de R$ 195,90 sem juros";
   const seuLinkAfiliado = "https://magazinevoce.com.br/in_2319363/p/236161000/";
 
-  const previewText = internalText
+  const replacedText = internalText
     .replace("{{produto}}", produto)
     .replace("{{preco_original}}", precoOriginal)
     .replace("{{preco}}", preco)
     .replace("{{parcelamento}}", parcelamento)
     .replace("{{seu_link_afiliado}}", seuLinkAfiliado);
+
+  const previewText = convertWhatsAppToMarkdown(replacedText);
 
   return (
     <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
@@ -37,28 +51,8 @@ const WhatsAppPreview = ({ text }: IMenssage) => {
         />
         <span className="text-white font-semibold">WhatsApp</span>
       </div>
-      {/* <div className="p-4">
-        <p className="text-sm text-gray-600">🛍️ {produto}</p>
-        <p className="text-sm text-gray-500 line-through">{precoOriginal}</p>
-        <p className="text-lg font-semibold text-red-600">💸 {preco} 🚨🚨</p>
-        <p className="text-sm text-gray-600">💳 {parcelamento}</p>
-        <p className="text-sm text-blue-600">
-          👉{" "}
-          <a
-            href={seuLinkAfiliado}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline"
-          >
-            Link para comprar
-          </a>
-        </p>
-        <p className="text-xs text-gray-400 mt-2">
-          Promoção sujeita a alteração a qualquer momento
-        </p>
-      </div> */}
-      <div className="whitespace-pre-wrap break-words p-4 bg-white border border-gray-300 rounded-md shadow-sm text-muted [&_a]:text-blue-600 [&_a]:underline">
-        {/* <span>{previewText}</span> */}
+
+      <div className="whitespace-pre-wrap break-words p-4 bg-white border border-gray-300 rounded-md shadow-sm text-muted-foreground [&_a]:text-blue-600 [&_a]:underline">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{previewText}</ReactMarkdown>
       </div>
     </div>

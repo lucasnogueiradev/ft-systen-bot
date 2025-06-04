@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../../../../components/ui/button";
 import { Helmet } from "react-helmet-async";
-import { FluxosWhatsApp } from "./whastApp";
+import { CreateMensages } from "./create-menssages";
 // import { FormData } from "../../../../types/index";
 // import { toast } from "sonner";
 
@@ -19,7 +19,12 @@ export function MessagesWhatsApp() {
       case 1:
         return <TableMenssagens />;
       case 2:
-        return <FluxosWhatsApp />;
+        return (
+          <CreateMensages
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+          />
+        );
       default:
         return null;
     }

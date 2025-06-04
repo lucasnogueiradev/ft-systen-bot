@@ -9,6 +9,18 @@ export interface CreateFluxoProps {
   currentStep: number;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
 }
+export interface CreateMessageProps {
+  onCancelar?: () => void;
+  onDataChange?: (data: any) => void;
+  setFormData?: React.Dispatch<React.SetStateAction<FormDataMessage>>;
+  currentStep?: number;
+  setCurrentStep?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface FormDataMessage {
+  name: string;
+  content: string;
+}
 
 export interface Model {
   name: string;
