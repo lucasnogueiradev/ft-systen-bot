@@ -152,8 +152,8 @@ export function CreateMensages({
           </h1>
         </div>
         {/* {loading && <AppLoader fullscreen={loading} />} */}
-        <div className="rounded-md bg-card px-2 overflow-auto h-screen">
-          <div className="box-border rounded-md bg-card min-h-[160vh]">
+        <div className="rounded-md bg-card px-2 overflow-auto h-[70vh] scrollbar-none">
+          <div className="box-border rounded-md bg-card min-h-[140vh]">
             <article className="flex w-full flex-col gap-y-2 pt-2 pb-16 bg-red">
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="py-4">
