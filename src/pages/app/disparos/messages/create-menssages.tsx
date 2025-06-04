@@ -267,7 +267,7 @@ export function CreateMensages({
                     onClick={handleBack}
                     className="text-blue-500 bg-transparent"
                   >
-                    Voltar 2
+                    Voltar
                   </Button>
 
                   <Button
