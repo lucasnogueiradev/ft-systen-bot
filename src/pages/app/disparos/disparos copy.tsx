@@ -65,7 +65,7 @@ export default function Disparos() {
         <div className="rounded-md bg-primary-foreground h-[83vh] overflow-y-auto overflow-x-hidden flex items-center justify-center">
           <div className="rounded-md p-6 md:h-[80vh] h-full m-auto max-w-xl w-full flex flex-col gap-4">
             <Button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
-              + Adicionar grupo
+              + Adicionar grupo 2
             </Button>
             <input
               type="text"
@@ -82,20 +82,6 @@ export default function Disparos() {
               className="border p-3 rounded-md w-full text-muted-foreground bg-secondary"
             />
 
-            {/* <input
-              type="text"
-              placeholder="URL da imagem (opcional)"
-              value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
-              className="border p-3 rounded-md w-full text-black"
-            /> */}
-            {/* <textarea
-              // type="text"
-              placeholder="Legenda da imagem (opcional)"
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
-              className="border p-3 h-[300px] rounded-md w-full text-black"
-            /> */}
             <button
               onClick={handleSend}
               disabled={loading}

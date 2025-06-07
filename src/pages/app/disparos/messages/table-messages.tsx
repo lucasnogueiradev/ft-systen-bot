@@ -10,7 +10,6 @@ import {
 } from "../../../../components/ui/table";
 import { MessagesTableRow } from "./messages-row";
 import { MessageTableRowSkeleton } from "./row-skeleton";
-import { toast } from "sonner";
 import { PaginationTable } from "../../../../components/paginations";
 
 // interface da mensagem
@@ -52,9 +51,9 @@ export function TableMenssagens() {
 
         if (Array.isArray(data.mensagens) && data.mensagens.length > 0) {
           const messagesData = data?.mensagens.map((item: any) => item);
-          console.log("refundsData", messagesData);
+          // console.log("refundsData", messagesData);
           setMessages(messagesData);
-          toast.success("Reembolsos encontrados!");
+          // toast.success("Reembolsos encontrados!");
         }
       } catch (err) {
         console.error("Erro ao buscar mensagens:", err);
