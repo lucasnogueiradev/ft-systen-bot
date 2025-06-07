@@ -22,22 +22,25 @@ export default function GroupManager() {
   const [error, setError] = useState<string | null>(null);
   const API_URL = "http://localhost:8082";
   useEffect(() => {
+    console.log("userId", userId);
     setLoading(true);
-    fetch(`${API_URL}/webhook/list-groups?userId=${userId}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Erro ao carregar os grupos");
-        return res.json();
-      })
-      .then((data) => {
-        console.log("data", data);
-        setGroups(data.groups);
-        console.log("groups", data.groups);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    if (userId) {
+      fetch(`${API_URL}/webhook/list-groups?userId=${userId}`)
+        .then((res) => {
+          if (!res.ok) throw new Error("Erro ao carregar os grupos");
+          return res.json();
+        })
+        .then((data) => {
+          console.log("data", data);
+          setGroups(data.groups);
+          console.log("groups", data.groups);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err.message);
+          setLoading(false);
+        });
+    }
   }, []);
 
   const handleAddGroup = async () => {
