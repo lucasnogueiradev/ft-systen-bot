@@ -21,8 +21,14 @@ export default function GroupManager() {
   const userId = user?._id;
   const [error, setError] = useState<string | null>(null);
   const API_URL = "http://localhost:8082";
+
   useEffect(() => {
-    console.log("userId", userId);
+    if (user) {
+      console.log("user", user);
+      getGroups(userId);
+    }
+  }, [user]);
+  function getGroups(userId?: string) {
     setLoading(true);
     if (userId) {
       fetch(`${API_URL}/webhook/list-groups?userId=${userId}`)
@@ -40,8 +46,11 @@ export default function GroupManager() {
           setError(err.message);
           setLoading(false);
         });
+    } else {
+      setLoading(false);
+      setError("Usuário não encontrado.");
     }
-  }, []);
+  }
 
   const handleAddGroup = async () => {
     if (!groupName || !groupLink) {

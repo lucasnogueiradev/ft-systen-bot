@@ -17,7 +17,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 export const AccountMenu = () => {
   const { user } = useAuth();
-  console.log("user", user);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
