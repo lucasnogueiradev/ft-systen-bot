@@ -20,7 +20,7 @@ export default function GroupManager() {
   const { user } = useAuth();
   const userId = user?._id;
   const [error, setError] = useState<string | null>(null);
-  const API_URL = "http://localhost:8082";
+  const API_URL = "https://bk-divulgadorpro.onrender.com";
 
   useEffect(() => {
     if (user) {
@@ -30,16 +30,22 @@ export default function GroupManager() {
   }, [user]);
   function getGroups(userId?: string) {
     setLoading(true);
+    const token = localStorage.getItem("token");
     if (userId) {
-      fetch(`${API_URL}/webhook/list-groups?userId=${userId}`)
+      fetch(`${API_URL}/groups/${userId}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
         .then((res) => {
           if (!res.ok) throw new Error("Erro ao carregar os grupos");
           return res.json();
         })
         .then((data) => {
           console.log("data", data);
-          setGroups(data.groups);
-          console.log("groups", data.groups);
+          setGroups(data);
+          console.log("groups", data);
           setLoading(false);
         })
         .catch((err) => {
@@ -67,13 +73,19 @@ export default function GroupManager() {
 
     setLoading(true);
     setStatus("");
-
+    const token = localStorage.getItem("token");
     try {
-      const joinRes = await fetch("http://localhost:3000/join-group", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ inviteCode }),
-      });
+      const joinRes = await fetch(
+        "https://bk-divulgadorpro.onrender.com/join-group",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ inviteCode }),
+        }
+      );
 
       if (!joinRes.ok) {
         const errorData = await joinRes.json();
@@ -85,10 +97,13 @@ export default function GroupManager() {
       }
 
       const joinData = await joinRes.json();
-      const API_URL = "http://localhost:8082";
-      const webhookRes = await fetch(`${API_URL}/webhook/update-grupo`, {
+
+      const webhookRes = await fetch(`${API_URL}/update-grupo`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           groupId: joinData.groupId,
           groupName,
