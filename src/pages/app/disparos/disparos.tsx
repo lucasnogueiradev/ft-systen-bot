@@ -140,7 +140,7 @@ export default function GroupManager() {
                       className="flex items-center gap-4 border p-4 rounded bg-secondary shadow"
                     >
                       <div className="w-12 h-12 bg-amber-400 rounded-full flex items-center justify-center text-xl font-bold text-muted-foreground truncate">
-                        {group?.groupName.charAt(0).toUpperCase()}
+                        {group?.groupName?.charAt(0)?.toUpperCase()}
                       </div>
                       <div>
                         <h3 className="font-semibold">{group?.groupName}</h3>
