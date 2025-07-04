@@ -60,7 +60,7 @@ export function AppSidebar() {
       children: [
         { title: "Adicionar grupo", url: "/disparos" },
         { title: "Criar mensagem", url: "/disparos/mensagem" },
-        { title: "Fazer disparo", url: "/criar-mensgem" },
+        { title: "Fazer disparo", url: "/disparos/meus-agendametos" },
       ],
     },
   ];

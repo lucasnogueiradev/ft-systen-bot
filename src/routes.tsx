@@ -18,6 +18,7 @@ import { MySite } from "./pages/app/site";
 import GroupManager from "./pages/app/disparos/disparos";
 
 import { MessagesWhatsApp } from "./pages/app/disparos/messages/consultarFluxo";
+import { ScheduleMessages } from "./pages/app/disparos/agendamentos/schedule-messages";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,7 @@ export const router = createBrowserRouter([
           { path: "/site", element: <MySite /> },
           { path: "/disparos", element: <GroupManager /> },
           { path: "/disparos/mensagem", element: <MessagesWhatsApp /> },
+          { path: "/disparos/meus-agendametos", element: <ScheduleMessages /> },
         ],
       },
     ],

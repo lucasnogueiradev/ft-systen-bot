@@ -4,7 +4,7 @@ import { RiGroup2Line } from "react-icons/ri";
 import { useAuth } from "../../../contexts/AuthContext";
 import { AppLoader } from "../../../components/ui/loading";
 
-type Group = {
+export type Group = {
   _id?: string; // se tiver id único no seu backend, use aqui
   groupName: string;
   groupLink: string;

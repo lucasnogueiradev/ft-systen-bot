@@ -7,7 +7,7 @@ export interface CreateFluxoProps {
   onDataChange: (data: any) => void;
   setFormData: React.Dispatch<React.SetStateAction<FormData>>;
   currentStep: number;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 export interface CreateMessageProps {
   onCancelar?: () => void;
@@ -15,6 +15,14 @@ export interface CreateMessageProps {
   setFormData?: React.Dispatch<React.SetStateAction<FormDataMessage>>;
   currentStep?: number;
   setCurrentStep?: React.Dispatch<React.SetStateAction<number>>;
+}
+export interface SelectGroups {
+  onCancelar?: () => void;
+  onDataChange?: (data: any) => void;
+  setFormData?: React.Dispatch<React.SetStateAction<FormDataMessage>>;
+  currentStep?: number;
+  setCurrentStep?: React.Dispatch<React.SetStateAction<number>>;
+  onSelectGroups?: (groups: string[]) => void;
 }
 
 export interface FormDataMessage {
@@ -64,8 +72,13 @@ export interface Model {
   };
 }
 
-export interface FormData {
-  fluxo: {
+export type FormDataMessage = {
+  group: {
+    name: string;
+    link: string;
+  };
+  message?: {
+    content: string;
     name: string;
   };
-}
+};
